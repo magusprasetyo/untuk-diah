@@ -4,6 +4,16 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Untuk Diah</title>
+<meta name="description" content="Buka pelan-pelan ya.">
+<meta name="robots" content="noindex, nofollow">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Ada kejutan kecil untukmu 🎁">
+<meta property="og:description" content="Buka pelan-pelan ya.">
+<meta property="og:image" content="https://magusprasetyo.github.io/untuk-diah/preview.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:url" content="https://magusprasetyo.github.io/untuk-diah/">
+<meta name="twitter:card" content="summary_large_image">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Young+Serif&family=Nunito+Sans:wght@400;600&family=Caveat:wght@500;700&display=swap">
 <style>
 :root{--bg:#fdf0f4;--ink:#3b1f3f;--soft:#7a5a80;--card:#fff;--rose:#c8396f;--gold:#e8a23a;--line:#f0cfdb;color-scheme:light;
@@ -59,6 +69,25 @@ footer{padding:30px 20px 50px;color:var(--soft);font-size:.9rem}
 .gift.vopen{background:var(--card);color:var(--ink);border:2px solid var(--rose)}
 .gift.vopen::before{opacity:0}
 .gift.vopen .lid span::after{content:" \2713";color:var(--rose)}
+.cake{max-width:300px;margin:0 auto 14px;cursor:pointer}
+.cake svg{width:100%;height:auto;display:block}
+.flame{transform-box:fill-box;transform-origin:50% 100%;animation:fl .18s ease-in-out infinite alternate}
+@keyframes fl{from{transform:scale(1,1) rotate(-3deg)}to{transform:scale(.9,1.12) rotate(3deg)}}
+.cake.out .flame{display:none}
+.wish{min-height:1.6em;color:var(--soft);margin:0 0 14px}
+.row{display:flex;gap:10px;justify-content:center;flex-wrap:wrap}
+.mem{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;perspective:800px}
+.mc{position:relative;aspect-ratio:3/4;border:0;padding:0;background:none;cursor:pointer;transform-style:preserve-3d;transition:transform .5s;font:inherit}
+.mc.flip{transform:rotateY(180deg)}
+.mc.done{cursor:default}
+.mf{position:absolute;inset:0;border-radius:12px;display:flex;align-items:center;justify-content:center;-webkit-backface-visibility:hidden;backface-visibility:hidden;background-size:cover;background-position:center;font-size:.72rem;color:#fff;padding:4px}
+.mb{background:var(--rose);font-size:1.6rem;border:2px solid var(--gold)}
+.mp{transform:rotateY(180deg);align-items:flex-end}
+.mp.g0{background-image:linear-gradient(160deg,var(--rose),var(--gold))}
+.mp.g1{background-image:linear-gradient(160deg,#8b5cc4,var(--rose))}
+.mp.g2{background-image:linear-gradient(160deg,var(--gold),#d9547e)}
+.mc.done .mp{box-shadow:0 0 0 3px var(--gold)}
+.memst{color:var(--soft);margin:14px 0;min-height:1.6em}
 .modal{position:fixed;inset:0;z-index:7;background:rgba(20,10,30,.55);display:none;align-items:center;justify-content:center;padding:20px}
 .modal.show{display:flex}
 .mcard{background:var(--card);color:var(--ink);border-radius:24px;max-width:420px;width:100%;padding:28px 24px;text-align:center;max-height:85vh;overflow:auto}
@@ -89,6 +118,17 @@ footer{padding:30px 20px 50px;color:var(--soft);font-size:.9rem}
 </section>
 
 <section>
+  <h2>Buat permohonan dulu</h2>
+  <p class="sub">Pejamkan mata sebentar, lalu tiup lilinnya.</p>
+  <div class="cake" id="cake"></div>
+  <p class="wish" id="wish" aria-live="polite"></p>
+  <div class="row" id="cakebtns">
+    <button class="btn" id="blow">Tiup lilin</button>
+    <button class="btn ghost" id="blowMic">Tiup lewat mikrofon</button>
+  </div>
+</section>
+
+<section>
   <h2>Aku punya empat kado kecil</h2>
   <p class="sub">Ketuk kadonya satu per satu ya.</p>
   <div class="gifts" id="gifts"></div>
@@ -108,6 +148,14 @@ footer{padding:30px 20px 50px;color:var(--soft);font-size:.9rem}
   <h2>Tebak-tebakan Yuk</h2>
   <p class="sub">Seberapa ingat kamu tentang kita?</p>
   <div id="quiz"></div>
+</section>
+
+<section>
+  <h2>Cocokkan kenangan</h2>
+  <p class="sub">Balik dua kartu, temukan pasangan fotonya.</p>
+  <div class="mem" id="mem"></div>
+  <p class="memst" id="memst" aria-live="polite"></p>
+  <button class="btn ghost" id="memreset">Acak ulang</button>
 </section>
 
 <section>
@@ -131,6 +179,8 @@ var CONFIG = {
   name: "Diah",
   month: 12, day: 8,
   music: "musik/kitalewatiberdua.mp3", // isi dengan data: URI atau tautan lagu bila sudah ada
+  age: 28, // umur Diah untuk lilin di kue (sampai 12 tahun lilinnya satuan, di atas itu berbentuk angka)
+  wish: "Semoga semua permohonanmu terkabul.",
   gifts: [
     {icon: "💌", label: "Pesan 1", text: "Terima kasih sudah jadi orang yang paling bikin aku nyaman jadi diri sendiri."},
     {icon: "📸", label: "Kenangan", text: "Aku masih ingat pertama kali kita ngobrol lama sampai lupa waktu."},
@@ -245,6 +295,94 @@ $("openLetter").onclick = function(){
     (function type(){ p.textContent = t.slice(0, ++k); if (k < t.length) setTimeout(type, 38); else setTimeout(next, 500); })();
   })();
 };
+
+// Kue
+var blown = false;
+(function(){
+  var age = Math.max(1, Math.floor(CONFIG.age || 5)), c = "";
+  if (age <= 12) {
+    for (var i = 0; i < age; i++) {
+      var x = age === 1 ? 120 : 70 + i * 100 / (age - 1);
+      c += '<rect x="'+(x-4)+'" y="46" width="8" height="27" rx="2" fill="'+(i%2 ? "#8b5cc4" : "#4fb99f")+'"/>'
+         + '<g class="flame"><ellipse cx="'+x+'" cy="36" rx="5.5" ry="9" fill="#f5a524"/><ellipse cx="'+x+'" cy="39" rx="2.6" ry="5" fill="#ffe28a"/></g>';
+    }
+  } else {
+    var d = String(age).split("").slice(0, 3);
+    d.forEach(function(ch, i){
+      var x = 120 + (i - (d.length - 1) / 2) * 44;
+      c += '<rect x="'+(x-18)+'" y="28" width="36" height="46" rx="9" fill="'+(i%2 ? "#8b5cc4" : "#4fb99f")+'"/>'
+         + '<text x="'+x+'" y="64" text-anchor="middle" font-family="Young Serif,Georgia,serif" font-size="34" fill="#fff">'+ch+'</text>'
+         + '<g class="flame"><ellipse cx="'+x+'" cy="18" rx="5.5" ry="9" fill="#f5a524"/><ellipse cx="'+x+'" cy="21" rx="2.6" ry="5" fill="#ffe28a"/></g>';
+    });
+  }
+  $("cake").innerHTML = '<svg viewBox="0 0 240 190" role="img" aria-label="Kue ulang tahun">'
+    + '<ellipse cx="120" cy="176" rx="112" ry="10" fill="var(--line)"/>'
+    + '<rect x="22" y="112" width="196" height="58" rx="12" fill="var(--rose)"/>'
+    + '<rect x="22" y="112" width="196" height="14" rx="7" fill="#fff7fb"/>'
+    + '<circle cx="62" cy="148" r="5" fill="#fff7fb" opacity=".85"/><circle cx="120" cy="152" r="5" fill="#fff7fb" opacity=".85"/><circle cx="178" cy="148" r="5" fill="#fff7fb" opacity=".85"/>'
+    + '<rect x="52" y="72" width="136" height="42" rx="10" fill="var(--gold)"/>'
+    + '<rect x="52" y="72" width="136" height="12" rx="6" fill="#fff7fb"/>'
+    + c + '</svg>';
+})();
+function blow(){
+  if (blown) return; blown = true;
+  $("cake").classList.add("out"); $("cakebtns").style.display = "none";
+  $("wish").textContent = CONFIG.wish || "Semoga semua permohonanmu terkabul.";
+  boom(90); boom(36, null, null, "spark");
+}
+$("cake").onclick = blow; $("blow").onclick = blow;
+$("blowMic").onclick = function(){
+  if (!navigator.mediaDevices || !navigator.mediaDevices.getUserMedia) { $("wish").textContent = "Mikrofon tidak tersedia, ketuk tombol Tiup lilin saja."; return; }
+  navigator.mediaDevices.getUserMedia({audio: true}).then(function(stream){
+    var ac = new (window.AudioContext || window.webkitAudioContext)(), an = ac.createAnalyser(), buf = new Uint8Array(512), hits = 0;
+    ac.resume(); an.fftSize = 512; ac.createMediaStreamSource(stream).connect(an);
+    $("wish").textContent = "Tiup ke arah mikrofon...";
+    (function listen(){
+      if (blown) { stream.getTracks().forEach(function(t){ t.stop(); }); ac.close(); return; }
+      an.getByteTimeDomainData(buf);
+      var sum = 0; for (var i = 0; i < buf.length; i++) { var v = (buf[i] - 128) / 128; sum += v * v; }
+      hits = Math.sqrt(sum / buf.length) > .12 ? hits + 1 : Math.max(0, hits - 1);
+      if (hits > 18) blow();
+      requestAnimationFrame(listen);
+    })();
+  }).catch(function(){ $("wish").textContent = "Mikrofon tidak diizinkan, ketuk tombol Tiup lilin saja."; });
+};
+
+// Permainan kartu (memakai CONFIG.photos; tanpa foto, kartunya berisi label berwarna)
+(function(){
+  var P = CONFIG.photos, first = null, lock = false, moves = 0, found = 0;
+  function build(){
+    var deck = [], i;
+    first = null; lock = false; moves = 0; found = 0;
+    P.forEach(function(p, k){ deck.push(k, k); });
+    for (i = deck.length - 1; i > 0; i--) { var j = Math.floor(Math.random() * (i + 1)), t = deck[i]; deck[i] = deck[j]; deck[j] = t; }
+    $("mem").innerHTML = deck.map(function(k, idx){
+      var p = P[k], st = p.src ? ' style="background-image:url(\''+p.src+'\')"' : "";
+      return '<button class="mc" data-k="'+k+'" aria-label="Kartu '+(idx+1)+'"><span class="mf mb">\u2665</span><span class="mf mp g'+(k%3)+'"'+st+'>'+(p.src ? "" : p.caption)+'</span></button>';
+    }).join("");
+    $("memst").textContent = "Pasangan: 0/" + P.length;
+  }
+  $("mem").addEventListener("click", function(e){
+    var c = e.target.closest(".mc"); if (!c || lock || c.classList.contains("flip")) return;
+    c.classList.add("flip");
+    if (!first) { first = c; return; }
+    var a = first, b = c; first = null; moves++;
+    if (a.dataset.k === b.dataset.k) {
+      a.classList.add("done"); b.classList.add("done"); found++;
+      var r = b.getBoundingClientRect(); boom(8, r.left + r.width/2, r.top, "heart");
+    } else {
+      lock = true; setTimeout(function(){ a.classList.remove("flip"); b.classList.remove("flip"); lock = false; }, 800);
+    }
+    if (found === P.length) {
+      $("memst").textContent = "Semua pasangan ketemu dalam " + moves + " langkah!";
+      setTimeout(function(){ boom(30, null, null, "heart"); boom(60); }, 400);
+    } else {
+      $("memst").textContent = "Langkah: " + moves + " \u00b7 Pasangan: " + found + "/" + P.length;
+    }
+  });
+  $("memreset").onclick = build;
+  build();
+})();
 
 // Musik
 if (CONFIG.music) {
