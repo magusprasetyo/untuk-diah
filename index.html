@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Untuk Diah</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Young+Serif&family=Nunito+Sans:wght@400;600&family=Caveat:wght@500;700&display=swap">
+<style>
+:root{--bg:#fdf0f4;--ink:#3b1f3f;--soft:#7a5a80;--card:#fff;--rose:#c8396f;--gold:#e8a23a;--line:#f0cfdb;color-scheme:light;
+box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#1e1430;--ink:#fbe9f1;--soft:#c3a6c9;--card:#2c1d44;--rose:#f06a9b;--gold:#f2b84f;--line:#473063;color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#1e1430;--ink:#fbe9f1;--soft:#c3a6c9;--card:#2c1d44;--rose:#f06a9b;--gold:#f2b84f;--line:#473063;color-scheme:dark}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:400 17px/1.6 "Nunito Sans",system-ui,sans-serif;text-align:center}
+h1,h2{font-family:"Young Serif",Georgia,serif;font-weight:400;line-height:1.1;margin:0}
+section{max-width:680px;margin:0 auto;padding:56px 20px}
+.hero{min-height:92vh;display:flex;flex-direction:column;justify-content:center;align-items:center}
+.hero small{color:var(--soft);font-size:1rem}
+.hero h1{font-size:clamp(3.6rem,17vw,7rem);color:var(--rose);margin:8px 0 28px}
+.count{display:flex;gap:10px;justify-content:center}
+.count div{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:12px 6px;min-width:66px}
+.count b{display:block;font:400 1.9rem/1 "Young Serif",Georgia,serif;color:var(--ink)}
+.count span{font-size:.8rem;color:var(--soft)}
+.note{color:var(--soft);margin-top:22px;max-width:30ch}
+h2{font-size:clamp(1.7rem,6vw,2.3rem);margin-bottom:8px}
+.sub{color:var(--soft);margin:0 0 26px}
+.gifts{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.gift{position:relative;aspect-ratio:1;border:0;border-radius:22px;background:var(--rose);color:#fff;cursor:pointer;font:inherit;padding:0;overflow:hidden;transition:transform .2s}
+.gift:active{transform:scale(.96)}
+.gift:focus-visible,.btn:focus-visible{outline:3px solid var(--gold);outline-offset:3px}
+.gift .lid{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:4px;font-size:2.6rem;transition:opacity .4s,transform .4s}
+.gift .lid span{font-size:.9rem}
+.gift::before{content:"";position:absolute;left:50%;top:0;bottom:0;width:14px;margin-left:-7px;background:var(--gold);transition:opacity .4s}
+.gift .msg{position:absolute;inset:0;background:var(--card);color:var(--ink);padding:14px;display:flex;align-items:center;justify-content:center;font-size:.95rem;line-height:1.4;opacity:0;transition:opacity .4s;border:2px solid var(--rose);border-radius:22px}
+.gift.open .lid,.gift.open::before{opacity:0;transform:scale(1.2)}
+.gift.open .msg{opacity:1}
+.gallery{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+.ph{aspect-ratio:3/4;border-radius:14px;display:flex;align-items:flex-end;justify-content:center;padding:8px;font-size:.8rem;color:#fff;background:linear-gradient(160deg,var(--rose),var(--gold));background-size:cover;background-position:center}
+.ph:nth-child(2n){background-image:linear-gradient(160deg,#8b5cc4,var(--rose))}
+.ph:nth-child(3n){background-image:linear-gradient(160deg,var(--gold),#d9547e)}
+.btn{font:600 1rem "Nunito Sans",sans-serif;background:var(--rose);color:#fff;border:0;border-radius:999px;padding:14px 28px;cursor:pointer}
+.letter{background:var(--card);border:1px solid var(--line);border-radius:22px;padding:26px 22px;margin-top:22px;text-align:left;font:500 1.45rem/1.5 Caveat,cursive;display:none}
+.letter.show{display:block}
+.letter p{margin:0 0 .8em}
+.music{position:fixed;right:14px;top:calc(14px + env(safe-area-inset-top,0px));background:var(--card);border:1px solid var(--line);color:var(--ink);border-radius:999px;width:44px;height:44px;font-size:1.2rem;cursor:pointer;display:none;z-index:5}
+footer{padding:30px 20px 50px;color:var(--soft);font-size:.9rem}
+#fx{position:fixed;inset:0;pointer-events:none;z-index:9}
+.welcome{position:fixed;inset:0;z-index:8;background:var(--bg);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:18px;padding:20px;transition:opacity .6s}
+.welcome h2{font-size:clamp(3.4rem,16vw,6rem);color:var(--rose)}
+.welcome p{margin:0;color:var(--soft)}
+.welcome.gone{opacity:0;pointer-events:none}
+.q{background:var(--card);border:1px solid var(--line);border-radius:20px;padding:18px;margin-bottom:14px;text-align:left}
+.q p{margin:0 0 12px;font-weight:600}
+.q button{display:block;width:100%;text-align:left;font:inherit;background:transparent;color:var(--ink);border:1px solid var(--line);border-radius:12px;padding:10px 14px;margin-bottom:8px;cursor:pointer}
+.q button.ok{background:var(--rose);border-color:var(--rose);color:#fff}
+.q button.bad{opacity:.5}
+.q .fb{min-height:1.5em;color:var(--soft);margin:4px 0 0}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+</head>
+<body>
+<canvas id="fx"></canvas>
+<button class="music" id="music" aria-label="Putar musik">♪</button>
+
+<div class="welcome" id="welcome">
+  <p>Ada yang spesial nih untuk</p>
+  <h2 id="wname"></h2>
+  <button class="btn" id="start">Coba Buka Deh</button>
+</div>
+
+<section class="hero">
+  <small id="kicker">Ada kejutan kecil untuk</small>
+  <h1 id="name">Diah</h1>
+  <div class="count" id="count" aria-live="polite"></div>
+  <p class="note" id="note"></p>
+</section>
+
+<section>
+  <h2>Aku punya empat kado kecil</h2>
+  <p class="sub">Ketuk kadonya satu per satu ya.</p>
+  <div class="gifts" id="gifts"></div>
+</section>
+
+<section>
+  <h2>Tebak-tebakan Yuk</h2>
+  <p class="sub">Seberapa ingat kamu tentang kita?</p>
+  <div id="quiz"></div>
+</section>
+
+<section>
+  <h2>Kenangan kita</h2>
+  <p class="sub" id="gsub">Beberapa momen yang paling aku simpan.</p>
+  <div class="gallery" id="gallery"></div>
+</section>
+
+<section>
+  <h2>Satu hal lagi</h2>
+  <p class="sub">Kado terakhir dariku.</p>
+  <button class="btn" id="openLetter">Buka suratnya</button>
+  <div class="letter" id="letter"></div>
+</section>
+
+<footer>Dibuat dengan sayang, khusus untuk Diah.</footer>
+
+<script>
+/* ====== ISI DI SINI: ganti teks, foto, dan musik sesuai bahan yang sudah ada ====== */
+var CONFIG = {
+  name: "Diah",
+  month: 12, day: 8,
+  music: "musik/kitalewatiberdua.mp3", // isi dengan data: URI atau tautan lagu bila sudah ada
+  gifts: [
+    {icon: "💌", label: "Pesan 1", text: "Terima kasih sudah jadi orang yang paling bikin aku nyaman jadi diri sendiri."},
+    {icon: "📸", label: "Kenangan", text: "Aku masih ingat pertama kali kita ngobrol lama sampai lupa waktu."},
+    {icon: "🎟️", label: "Voucher", text: "Voucher 1x makan malam di tempat pilihan Diah. Aku yang traktir."},
+    {icon: "🔒", label: "Rahasia", text: "Doaku buat kamu tahun ini: sehat, bahagia, dan semua rencanamu terwujud."}
+  ],
+  quiz: [ // contoh pertanyaan, ganti dengan hal yang hanya kalian berdua tahu; answer = nomor pilihan benar (mulai dari 0)
+    {q:"Di mana kita pertama kali bertemu?", options:["Di kampus","Di tempat kerja","Lewat teman","Lewat aplikasi"], answer:2, yes:"Betul! Jangan lupa bilang makasih ke mereka.", no:"Hmm, coba ingat lagi ya."},
+    {q:"Makanan favorit kita berdua?", options:["Bakso","Nasi goreng","Sate","Mie ayam"], answer:0, yes:"Tepat sekali!", no:"Bukan itu, coba lagi."},
+    {q:"Siapa yang lebih sering ngalah kalau berdebat?", options:["Aku","Kamu","Gantian","Nggak ada"], answer:0, yes:"Hehe, jujur banget.", no:"Ayo jujur, yang benar yang mana?"}
+  ],
+  photos: [ // isi url atau data: URI foto, contoh: {src: "data:image/jpeg;base64,...", caption: "Liburan"}
+    {src: "", caption: "Foto 1"},{src: "", caption: "Foto 2"},{src: "", caption: "Foto 3"},
+    {src: "", caption: "Foto 4"},{src: "", caption: "Foto 5"},{src: "", caption: "Foto 6"}
+  ],
+  letter: [
+    "Diah sayang,",
+    "Selamat ulang tahun. Aku bersyukur banget punya kamu di hari-hariku.",
+    "Ini baru kerangka surat. Isinya akan aku tulis dari hati, lengkap dengan cerita yang cuma kita berdua yang tahu.",
+    "Sekali lagi, selamat ulang tahun."
+  ]
+};
+/* ====== akhir bagian yang diedit ====== */
+
+var $ = function(id){return document.getElementById(id)};
+$("name").textContent = CONFIG.name;
+document.title = "Untuk " + CONFIG.name;
+$("wname").textContent = CONFIG.name;
+$("start").onclick = function(){
+  $("welcome").classList.add("gone");
+  if (window.au) { window.au.play(); $("music").textContent = "❚❚"; }
+  boom(window.bdayToday ? 160 : 70);
+};
+
+// Hitung mundur
+var now = new Date(), year = now.getFullYear();
+var target = new Date(year, CONFIG.month - 1, CONFIG.day, 0, 0, 0);
+var endDay = new Date(year, CONFIG.month - 1, CONFIG.day + 1, 0, 0, 0);
+if (now >= endDay) { target = new Date(year + 1, CONFIG.month - 1, CONFIG.day, 0, 0, 0); }
+if (location.hash === "#uji") { target = new Date(now.getTime() - 1000); } // tambahkan #uji di akhir link untuk melihat tampilan hari H
+function tick(){
+  var d = target - new Date();
+  if (d <= 0) {
+    $("kicker").textContent = "Selamat ulang tahun";
+    $("count").style.display = "none";
+    $("note").textContent = "Hari ini hari kamu. Yuk, buka kado-kadonya di bawah.";
+    return false;
+  }
+  var s = Math.floor(d / 1000), days = Math.floor(s / 86400), h = Math.floor(s % 86400 / 3600), m = Math.floor(s % 3600 / 60), sec = s % 60;
+  $("count").innerHTML = [[days,"hari"],[h,"jam"],[m,"menit"],[sec,"detik"]].map(function(x){return "<div><b>"+x[0]+"</b><span>"+x[1]+"</span></div>"}).join("");
+  $("note").textContent = "Menuju hari ulang tahunmu, " + CONFIG.day + " Desember.";
+  return true;
+}
+if (tick()) setInterval(tick, 1000); else window.bdayToday = true;
+
+// Kado
+$("gifts").innerHTML = CONFIG.gifts.map(function(g,i){
+  return '<button class="gift" data-i="'+i+'" aria-label="Buka '+g.label+'"><div class="lid">'+g.icon+'<span>'+g.label+'</span></div><div class="msg">'+g.text+'</div></button>';
+}).join("");
+$("gifts").addEventListener("click", function(e){
+  var b = e.target.closest(".gift"); if (!b || b.classList.contains("open")) return;
+  b.classList.add("open"); var r = b.getBoundingClientRect(); boom(60, r.left + r.width/2, r.top + r.height/2);
+});
+
+// Galeri
+$("gallery").innerHTML = CONFIG.photos.map(function(p){
+  var st = p.src ? ' style="background-image:url(\''+p.src+'\')"' : "";
+  return '<div class="ph"'+st+'>'+(p.src ? "" : p.caption)+'</div>';
+}).join("");
+
+// Kuis
+$("quiz").innerHTML = CONFIG.quiz.map(function(q,i){
+  return '<div class="q" data-i="'+i+'"><p>'+q.q+'</p>'+q.options.map(function(o,j){return '<button data-j="'+j+'">'+o+'</button>'}).join("")+'<div class="fb"></div></div>';
+}).join("");
+$("quiz").addEventListener("click", function(e){
+  var b = e.target.closest("button"); if (!b) return;
+  var box = b.parentNode, q = CONFIG.quiz[box.dataset.i], fb = box.querySelector(".fb");
+  if (box.classList.contains("done")) return;
+  if (+b.dataset.j === q.answer) { b.classList.add("ok"); box.classList.add("done"); fb.textContent = q.yes; var r = b.getBoundingClientRect(); boom(50, r.left + r.width/2, r.top); }
+  else { b.classList.add("bad"); fb.textContent = q.no; }
+});
+
+// Surat (diketik pelan-pelan)
+$("openLetter").onclick = function(){
+  var L = $("letter"); L.classList.add("show"); this.style.display = "none"; boom(120);
+  L.scrollIntoView({behavior:"smooth", block:"center"});
+  var reduce = matchMedia("(prefers-reduced-motion:reduce)").matches, i = 0;
+  (function next(){
+    if (i >= CONFIG.letter.length) return;
+    var p = document.createElement("p"); L.appendChild(p); var t = CONFIG.letter[i++], k = 0;
+    if (reduce) { p.textContent = t; next(); return; }
+    (function type(){ p.textContent = t.slice(0, ++k); if (k < t.length) setTimeout(type, 38); else setTimeout(next, 500); })();
+  })();
+};
+
+// Musik
+if (CONFIG.music) {
+  var au = new Audio(CONFIG.music); au.loop = true; $("music").style.display = "block";
+  $("music").onclick = function(){ if (au.paused) { au.play(); this.textContent = "❚❚"; } else { au.pause(); this.textContent = "♪"; } };
+}
+
+// Konfeti
+var cv = $("fx"), cx = cv.getContext("2d"), bits = [], run = false;
+function size(){ cv.width = innerWidth; cv.height = innerHeight; }
+size(); addEventListener("resize", size);
+function boom(n, x, y){
+  if (matchMedia("(prefers-reduced-motion:reduce)").matches) return;
+  var cols = ["#c8396f","#e8a23a","#8b5cc4","#4fb99f","#f06a9b"];
+  for (var i = 0; i < n; i++) bits.push({x: x == null ? Math.random()*cv.width : x, y: y == null ? -10 : y,
+    vx: (Math.random()-.5)*(x == null ? 3 : 9), vy: x == null ? 2+Math.random()*3 : -3-Math.random()*7,
+    w: 6+Math.random()*6, h: 4+Math.random()*5, c: cols[i%5], r: Math.random()*6, vr: (Math.random()-.5)*.3, life: 220});
+  if (!run) { run = true; requestAnimationFrame(loop); }
+}
+function loop(){
+  cx.clearRect(0,0,cv.width,cv.height);
+  bits = bits.filter(function(p){return p.life > 0 && p.y < cv.height + 20});
+  bits.forEach(function(p){
+    p.x += p.vx; p.y += p.vy; p.vy += .12; p.r += p.vr; p.life--;
+    cx.save(); cx.translate(p.x,p.y); cx.rotate(p.r); cx.fillStyle = p.c; cx.fillRect(-p.w/2,-p.h/2,p.w,p.h); cx.restore();
+  });
+  if (bits.length) requestAnimationFrame(loop); else run = false;
+}
+</script>
+</body>
+</html>
