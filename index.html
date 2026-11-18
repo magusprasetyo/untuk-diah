@@ -32,9 +32,6 @@ h2{font-size:clamp(1.7rem,6vw,2.3rem);margin-bottom:8px}
 .gift .lid{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:4px;font-size:2.6rem;transition:opacity .4s,transform .4s}
 .gift .lid span{font-size:.9rem}
 .gift::before{content:"";position:absolute;left:50%;top:0;bottom:0;width:14px;margin-left:-7px;background:var(--gold);transition:opacity .4s}
-.gift .msg{position:absolute;inset:0;background:var(--card);color:var(--ink);padding:14px;display:flex;align-items:center;justify-content:center;font-size:.95rem;line-height:1.4;opacity:0;transition:opacity .4s;border:2px solid var(--rose);border-radius:22px}
-.gift.open .lid,.gift.open::before{opacity:0;transform:scale(1.2)}
-.gift.open .msg{opacity:1}
 .gallery{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
 .ph{aspect-ratio:3/4;border-radius:14px;display:flex;align-items:flex-end;justify-content:center;padding:8px;font-size:.8rem;color:#fff;background:linear-gradient(160deg,var(--rose),var(--gold));background-size:cover;background-position:center}
 .ph:nth-child(2n){background-image:linear-gradient(160deg,#8b5cc4,var(--rose))}
@@ -56,7 +53,22 @@ footer{padding:30px 20px 50px;color:var(--soft);font-size:.9rem}
 .q button.ok{background:var(--rose);border-color:var(--rose);color:#fff}
 .q button.bad{opacity:.5}
 .q .fb{min-height:1.5em;color:var(--soft);margin:4px 0 0}
-@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+.gift .msg{position:absolute;inset:0;background:var(--card);color:var(--ink);padding:14px;display:flex;align-items:center;justify-content:center;font-size:.95rem;line-height:1.4;opacity:0;transition:opacity .4s;border:2px solid var(--rose);border-radius:22px}
+.gift.open .lid,.gift.open::before{opacity:0;transform:scale(1.2)}
+.gift.open .msg{opacity:1}
+.gift.vopen{background:var(--card);color:var(--ink);border:2px solid var(--rose)}
+.gift.vopen::before{opacity:0}
+.gift.vopen .lid span::after{content:" \2713";color:var(--rose)}
+.modal{position:fixed;inset:0;z-index:7;background:rgba(20,10,30,.55);display:none;align-items:center;justify-content:center;padding:20px}
+.modal.show{display:flex}
+.mcard{background:var(--card);color:var(--ink);border-radius:24px;max-width:420px;width:100%;padding:28px 24px;text-align:center;max-height:85vh;overflow:auto}
+.mcard .mi{font-size:3rem;line-height:1.2}
+.mcard h3{font:400 1.5rem "Young Serif",Georgia,serif;margin:6px 0 10px;color:var(--rose)}
+.mcard p{margin:0 0 18px;white-space:pre-line}
+.mcard img{max-width:100%;border-radius:14px;margin-bottom:14px}
+.btn.ghost{background:transparent;color:var(--ink);border:1px solid var(--line)}
+.mcard .btn{margin:4px}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
 </style>
 </head>
 <body>
@@ -80,6 +92,16 @@ footer{padding:30px 20px 50px;color:var(--soft);font-size:.9rem}
   <h2>Aku punya empat kado kecil</h2>
   <p class="sub">Ketuk kadonya satu per satu ya.</p>
   <div class="gifts" id="gifts"></div>
+  <div class="modal" id="modal" role="dialog" aria-modal="true" aria-labelledby="mt">
+    <div class="mcard">
+      <div class="mi" id="mi"></div>
+      <h3 id="mt"></h3>
+      <img id="mimg" alt="" hidden>
+      <p id="mp"></p>
+      <button class="btn" id="claim" hidden>Klaim voucher</button>
+      <button class="btn ghost" id="mclose">Tutup</button>
+    </div>
+  </div>
 </section>
 
 <section>
@@ -112,7 +134,7 @@ var CONFIG = {
   gifts: [
     {icon: "💌", label: "Pesan 1", text: "Terima kasih sudah jadi orang yang paling bikin aku nyaman jadi diri sendiri."},
     {icon: "📸", label: "Kenangan", text: "Aku masih ingat pertama kali kita ngobrol lama sampai lupa waktu."},
-    {icon: "🎟️", label: "Voucher", text: "Voucher 1x makan malam di tempat pilihan Diah. Aku yang traktir."},
+    {icon: "🎟️", label: "Voucher", voucher: true, text: "Voucher 1x makan malam di tempat pilihan Diah. Aku yang traktir."},
     {icon: "🔒", label: "Rahasia", text: "Doaku buat kamu tahun ini: sehat, bahagia, dan semua rencanamu terwujud."}
   ],
   quiz: [ // contoh pertanyaan, ganti dengan hal yang hanya kalian berdua tahu; answer = nomor pilihan benar (mulai dari 0)
@@ -140,7 +162,7 @@ $("wname").textContent = CONFIG.name;
 $("start").onclick = function(){
   $("welcome").classList.add("gone");
   if (window.au) { window.au.play(); $("music").textContent = "❚❚"; }
-  boom(window.bdayToday ? 160 : 70);
+  boom(18, null, null, "balloon"); boom(window.bdayToday ? 140 : 50);
 };
 
 // Hitung mundur
@@ -165,13 +187,33 @@ function tick(){
 if (tick()) setInterval(tick, 1000); else window.bdayToday = true;
 
 // Kado
+var claimed = {}, cur = -1;
 $("gifts").innerHTML = CONFIG.gifts.map(function(g,i){
-  return '<button class="gift" data-i="'+i+'" aria-label="Buka '+g.label+'"><div class="lid">'+g.icon+'<span>'+g.label+'</span></div><div class="msg">'+g.text+'</div></button>';
+  return '<button class="gift" data-i="'+i+'" aria-label="Buka '+g.label+'"><div class="lid">'+g.icon+'<span>'+g.label+'</span></div>'+(g.voucher ? '' : '<div class="msg">'+g.text+'</div>')+'</button>';
 }).join("");
+function showGift(i){
+  var g = CONFIG.gifts[i]; cur = i;
+  $("mi").textContent = g.icon; $("mt").textContent = g.label; $("mp").textContent = g.text;
+  $("mimg").hidden = !g.photo; if (g.photo) $("mimg").src = g.photo;
+  $("claim").hidden = !g.voucher; $("claim").textContent = claimed[i] ? "Sudah diklaim \u2713" : "Klaim voucher"; $("claim").disabled = !!claimed[i];
+  $("modal").classList.add("show"); $("mclose").focus();
+}
+function closeGift(){ $("modal").classList.remove("show"); }
 $("gifts").addEventListener("click", function(e){
-  var b = e.target.closest(".gift"); if (!b || b.classList.contains("open")) return;
-  b.classList.add("open"); var r = b.getBoundingClientRect(); boom(60, r.left + r.width/2, r.top + r.height/2);
+  var b = e.target.closest(".gift"); if (!b) return;
+  var i = +b.dataset.i, g = CONFIG.gifts[i], r = b.getBoundingClientRect();
+  if (g.voucher) {
+    var first = !b.classList.contains("vopen");
+    b.classList.add("vopen"); showGift(i);
+    if (first) boom(30, r.left + r.width/2, r.top + r.height/2, "spark");
+  } else if (!b.classList.contains("open")) {
+    b.classList.add("open"); boom(60, r.left + r.width/2, r.top + r.height/2);
+  }
 });
+$("mclose").onclick = closeGift;
+$("modal").addEventListener("click", function(e){ if (e.target === this) closeGift(); });
+addEventListener("keydown", function(e){ if (e.key === "Escape") closeGift(); });
+$("claim").onclick = function(){ claimed[cur] = 1; this.textContent = "Sudah diklaim \u2713"; this.disabled = true; boom(40, null, null, "spark"); };
 
 // Galeri
 $("gallery").innerHTML = CONFIG.photos.map(function(p){
@@ -187,13 +229,13 @@ $("quiz").addEventListener("click", function(e){
   var b = e.target.closest("button"); if (!b) return;
   var box = b.parentNode, q = CONFIG.quiz[box.dataset.i], fb = box.querySelector(".fb");
   if (box.classList.contains("done")) return;
-  if (+b.dataset.j === q.answer) { b.classList.add("ok"); box.classList.add("done"); fb.textContent = q.yes; var r = b.getBoundingClientRect(); boom(50, r.left + r.width/2, r.top); }
+  if (+b.dataset.j === q.answer) { b.classList.add("ok"); box.classList.add("done"); fb.textContent = q.yes; var r = b.getBoundingClientRect(); boom(12, r.left + r.width/2, r.top, "heart"); }
   else { b.classList.add("bad"); fb.textContent = q.no; }
 });
 
 // Surat (diketik pelan-pelan)
 $("openLetter").onclick = function(){
-  var L = $("letter"); L.classList.add("show"); this.style.display = "none"; boom(120);
+  var L = $("letter"); L.classList.add("show"); this.style.display = "none"; boom(34, null, null, "heart");
   L.scrollIntoView({behavior:"smooth", block:"center"});
   var reduce = matchMedia("(prefers-reduced-motion:reduce)").matches, i = 0;
   (function next(){
@@ -214,20 +256,47 @@ if (CONFIG.music) {
 var cv = $("fx"), cx = cv.getContext("2d"), bits = [], run = false;
 function size(){ cv.width = innerWidth; cv.height = innerHeight; }
 size(); addEventListener("resize", size);
-function boom(n, x, y){
+function heart(x,y,s){cx.beginPath();cx.moveTo(x,y+s*.5);cx.bezierCurveTo(x-s*1.1,y-s*.1,x-s*.55,y-s*.8,x,y-s*.25);cx.bezierCurveTo(x+s*.55,y-s*.8,x+s*1.1,y-s*.1,x,y+s*.5);cx.fill();}
+function star(x,y,s){cx.beginPath();for(var k=0;k<8;k++){var a=k*Math.PI/4-Math.PI/2,r=k%2?s*.3:s;cx.lineTo(x+Math.cos(a)*r,y+Math.sin(a)*r);}cx.closePath();cx.fill();}
+// boom(jumlah, x, y, jenis): jenis = "confetti" (bawaan), "heart" (hati naik), "spark" (kilau bintang), "balloon" (balon naik)
+function boom(n, x, y, type){
   if (matchMedia("(prefers-reduced-motion:reduce)").matches) return;
-  var cols = ["#c8396f","#e8a23a","#8b5cc4","#4fb99f","#f06a9b"];
-  for (var i = 0; i < n; i++) bits.push({x: x == null ? Math.random()*cv.width : x, y: y == null ? -10 : y,
-    vx: (Math.random()-.5)*(x == null ? 3 : 9), vy: x == null ? 2+Math.random()*3 : -3-Math.random()*7,
-    w: 6+Math.random()*6, h: 4+Math.random()*5, c: cols[i%5], r: Math.random()*6, vr: (Math.random()-.5)*.3, life: 220});
+  type = type || "confetti";
+  var cols = ["#c8396f","#e8a23a","#8b5cc4","#4fb99f","#f06a9b"], W = cv.width, H = cv.height;
+  for (var i = 0; i < n; i++) {
+    var p = {t: type, c: cols[i%5], r: Math.random()*6, vr: (Math.random()-.5)*.3, life: 220, ph: Math.random()*6.28};
+    if (type === "heart") {
+      p.x = x == null ? Math.random()*W : x + (Math.random()-.5)*60; p.y = y == null ? H + 20 : y;
+      p.vx = (Math.random()-.5)*1.2; p.vy = -1.5-Math.random()*2.5; p.s = 8+Math.random()*10; p.c = ["#f06a9b","#c8396f","#ff8fb3"][i%3]; p.life = 200;
+    } else if (type === "spark") {
+      var a = Math.random()*6.28, v = 1+Math.random()*5;
+      p.x = x == null ? W/2 : x; p.y = y == null ? H/2 : y; p.vx = Math.cos(a)*v; p.vy = Math.sin(a)*v;
+      p.s = 6+Math.random()*8; p.c = ["#e8a23a","#f2b84f","#fff1b8"][i%3]; p.life = 70;
+    } else if (type === "balloon") {
+      p.x = Math.random()*W; p.y = H + 30 + Math.random()*80; p.vx = 0; p.vy = -1.2-Math.random()*1.6; p.s = 20+Math.random()*12; p.life = 900;
+    } else {
+      p.x = x == null ? Math.random()*W : x; p.y = y == null ? -10 : y;
+      p.vx = (Math.random()-.5)*(x == null ? 3 : 9); p.vy = x == null ? 2+Math.random()*3 : -3-Math.random()*7;
+      p.w = 6+Math.random()*6; p.h = 4+Math.random()*5;
+    }
+    bits.push(p);
+  }
   if (!run) { run = true; requestAnimationFrame(loop); }
 }
 function loop(){
   cx.clearRect(0,0,cv.width,cv.height);
-  bits = bits.filter(function(p){return p.life > 0 && p.y < cv.height + 20});
+  bits = bits.filter(function(p){return p.life > 0 && p.y > -80 && p.y < cv.height + 140});
   bits.forEach(function(p){
-    p.x += p.vx; p.y += p.vy; p.vy += .12; p.r += p.vr; p.life--;
-    cx.save(); cx.translate(p.x,p.y); cx.rotate(p.r); cx.fillStyle = p.c; cx.fillRect(-p.w/2,-p.h/2,p.w,p.h); cx.restore();
+    p.life--; p.ph += .05;
+    cx.save(); cx.globalAlpha = p.t === "confetti" ? 1 : Math.min(1, p.life/40); cx.fillStyle = p.c;
+    if (p.t === "heart") { p.x += p.vx + Math.sin(p.ph)*.7; p.y += p.vy; heart(p.x, p.y, p.s); }
+    else if (p.t === "spark") { p.x += p.vx; p.y += p.vy; p.vx *= .95; p.vy *= .95; star(p.x, p.y, p.s); }
+    else if (p.t === "balloon") {
+      p.x += Math.sin(p.ph)*.6; p.y += p.vy;
+      cx.strokeStyle = "rgba(120,100,130,.6)"; cx.beginPath(); cx.moveTo(p.x, p.y + p.s); cx.lineTo(p.x + Math.sin(p.ph)*6, p.y + p.s*2.4); cx.stroke();
+      cx.beginPath(); cx.ellipse(p.x, p.y, p.s*.8, p.s, 0, 0, 6.2832); cx.fill();
+    } else { p.x += p.vx; p.y += p.vy; p.vy += .12; p.r += p.vr; cx.translate(p.x,p.y); cx.rotate(p.r); cx.fillRect(-p.w/2,-p.h/2,p.w,p.h); }
+    cx.restore();
   });
   if (bits.length) requestAnimationFrame(loop); else run = false;
 }
