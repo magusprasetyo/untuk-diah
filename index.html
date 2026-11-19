@@ -19,10 +19,25 @@ section{max-width:680px;margin:0 auto;padding:56px 20px}
 .hero{min-height:92vh;display:flex;flex-direction:column;justify-content:center;align-items:center}
 .hero small{color:var(--soft);font-size:1rem}
 .hero h1{font-size:clamp(3.6rem,17vw,7rem);color:var(--rose);margin:8px 0 28px}
-.count{display:flex;gap:10px;justify-content:center}
-.count div{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:12px 6px;min-width:66px}
-.count b{display:block;font:400 1.9rem/1 "Young Serif",Georgia,serif;color:var(--ink)}
-.count span{font-size:.8rem;color:var(--soft)}
+/* hitung mundur: kartu jam dengan angka yang berguling, plus jalur perjalanan menuju hari H */
+.count{display:flex;flex-direction:column;align-items:center;gap:20px}
+.cus{display:flex;gap:10px;justify-content:center}
+.cu{position:relative;min-width:70px;padding:14px 8px 10px;border-radius:18px;background:var(--card);background:linear-gradient(170deg,var(--card),color-mix(in srgb,var(--rose) 10%,var(--card)));border:1px solid var(--line);box-shadow:0 12px 22px -14px rgba(200,57,111,.6),inset 0 1px 0 rgba(255,255,255,.55)}
+.cu b{position:relative;display:block;height:2.1rem;overflow:hidden;font:400 2.1rem/2.1rem "Young Serif",Georgia,serif;font-variant-numeric:tabular-nums}
+.cu b::after{content:"";position:absolute;z-index:2;left:0;right:0;top:50%;height:1px;background:rgba(60,20,70,.13)}
+.cu i{position:absolute;left:0;right:0;top:0;font-style:normal;background:linear-gradient(180deg,var(--rose),#8b5cc4);-webkit-background-clip:text;background-clip:text;color:transparent}
+.cu .old{animation:cuo .45s cubic-bezier(.5,0,.75,0) forwards}
+.cu .new{animation:cui .55s cubic-bezier(.2,.9,.3,1) backwards}
+@keyframes cuo{to{transform:translateY(-100%);opacity:0}}
+@keyframes cui{from{transform:translateY(100%);opacity:0}}
+.cu span{display:block;margin-top:6px;font-size:.74rem;letter-spacing:.08em;text-transform:uppercase;color:var(--soft)}
+.cu.s.beat{animation:cbeat .7s ease-out}
+@keyframes cbeat{0%{box-shadow:0 12px 22px -14px rgba(200,57,111,.6),0 0 0 0 rgba(200,57,111,.35)}100%{box-shadow:0 12px 22px -14px rgba(200,57,111,.6),0 0 0 12px rgba(200,57,111,0)}}
+.cprog{position:relative;width:min(300px,78vw);height:8px;border-radius:99px;background:var(--line)}
+.cprog i{position:absolute;left:0;top:0;bottom:0;width:var(--p,0%);border-radius:99px;background:linear-gradient(90deg,var(--gold),var(--rose));transition:width 1s linear}
+.cprog b{position:absolute;top:50%;left:var(--p,0%);font-weight:400;font-size:1.2rem;line-height:1;color:var(--rose);transform:translate(-50%,-52%);transition:left 1s linear;animation:cheart 1.3s ease-in-out infinite;filter:drop-shadow(0 0 5px rgba(200,57,111,.55))}
+@keyframes cheart{50%{transform:translate(-50%,-52%) scale(1.28)}}
+.cpt{margin-top:-8px;font-size:.84rem;color:var(--soft)}
 .note{color:var(--soft);margin-top:22px;max-width:30ch}
 h2{font-size:clamp(1.7rem,6vw,2.3rem);margin-bottom:8px}
 .sub{color:var(--soft);margin:0 0 26px}
@@ -147,7 +162,7 @@ footer{padding:30px 20px 50px;color:var(--soft);font-size:.9rem}
 .smoke{display:none;fill:none;stroke:rgba(150,130,160,.65);stroke-width:2;stroke-linecap:round}
 .cake.out .smoke{display:block;animation:smk 2s ease-out forwards}
 @keyframes smk{0%{opacity:0;transform:translateY(8px)}25%{opacity:.8}100%{opacity:0;transform:translateY(-18px)}}
-@media (prefers-reduced-motion:reduce){.cake.out .smoke,.cake.out .flame{display:none}}
+@media (prefers-reduced-motion:reduce){.cake.out .smoke,.cake.out .flame,.cu .old{display:none}}
 .flame{transform-box:fill-box;transform-origin:50% 100%;animation:fl .18s ease-in-out infinite alternate}
 @keyframes fl{from{transform:scale(1,1) rotate(-3deg)}to{transform:scale(.9,1.12) rotate(3deg)}}
 .cake.out .flame,.cake.out[data-w] .flame{animation:snuff .4s ease-in forwards}
@@ -227,6 +242,27 @@ footer{padding:30px 20px 50px;color:var(--soft);font-size:.9rem}
 .bend::before{content:"";position:absolute;left:0;top:0;bottom:0;width:16px;background:linear-gradient(90deg,rgba(0,0,0,.22),transparent);pointer-events:none}
 .bend span{font-size:2.4rem;color:var(--rose)}
 .bend p{margin:0;font:500 1.5rem/1.4 Caveat,cursive}
+/* hiasan buku: stiker, jahitan, garis tangan, sudut emas */
+.dc{position:absolute;z-index:3;pointer-events:none;filter:drop-shadow(0 1px 1.5px rgba(40,10,30,.35))}
+.dc svg{display:block;width:100%;height:100%;overflow:visible}
+.bmount .dc.tl{top:-16px;left:-14px}
+.bmount .dc.tr{top:-16px;right:-14px}
+.bmount .dc.bl{bottom:-16px;left:-14px}
+.bmount .dc.br{bottom:-16px;right:-14px}
+.bend .dc.tl{top:20px;left:30px}
+.bend .dc.tr{top:20px;right:22px}
+.bend .dc.bl{bottom:20px;left:30px}
+.bend .dc.br{bottom:20px;right:22px}
+.pf::after,.bend::after{content:"";position:absolute;inset:8px 8px 8px 20px;border:1.5px dashed rgba(200,57,111,.24);border-radius:4px;pointer-events:none}
+.bcap:not(:empty)::after{content:"";display:block;width:60px;height:6px;margin:3px auto 0;background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='60' height='6'%3E%3Cpath d='M1 3Q8 0 15 3T29 3T43 3T59 3' fill='none' stroke='%23c8396f' stroke-opacity='.5' stroke-width='1.6' stroke-linecap='round'/%3E%3C/svg%3E") center/60px 6px no-repeat}
+.pback{background:var(--paper),radial-gradient(circle,rgba(200,57,111,.08) 1.6px,transparent 2.2px) 0 0/18px 18px,#f7ecdf}
+.co{position:absolute;z-index:1;width:26px;height:26px;border:0 solid var(--gold);pointer-events:none;filter:drop-shadow(0 1px 0 rgba(60,20,40,.4))}
+.co.a{top:9px;left:23px;border-width:4px 0 0 4px;border-radius:5px 0 0 0}
+.co.b{top:9px;right:9px;border-width:4px 4px 0 0;border-radius:0 12px 0 0}
+.co.c{bottom:9px;left:23px;border-width:0 0 4px 4px;border-radius:0 0 0 5px}
+.co.d{bottom:9px;right:9px;border-width:0 4px 4px 0;border-radius:0 0 12px 0}
+.orn{display:block;width:124px;height:22px;filter:drop-shadow(0 1px 0 rgba(60,20,40,.4))}
+.orn.flip{transform:scaleY(-1)}
 .bkst{position:absolute;width:1px;height:1px;margin:-1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap} /* hanya untuk pembaca layar */
 .mbq svg{display:block;width:100%;max-width:240px;margin:0 auto 6px;overflow:visible}
 .bl{transform-box:fill-box;transform-origin:center;animation:bloom .9s cubic-bezier(.2,1.3,.4,1) backwards}
@@ -268,7 +304,7 @@ footer{padding:30px 20px 50px;color:var(--soft);font-size:.9rem}
 <section class="hero">
   <small id="kicker">Kejutan kecil buat</small>
   <h1 id="name">Agnes</h1>
-  <div class="count" id="count" aria-live="polite"></div>
+  <div class="count" id="count" role="timer" aria-label="Hitung mundur menuju hari ulang tahun"></div>
   <p class="note" id="note"></p>
 </section>
 
@@ -348,25 +384,25 @@ footer{padding:30px 20px 50px;color:var(--soft);font-size:.9rem}
 var CONFIG = {
   name: "Agnes",
   month: 12, day: 8, year: 2026, // tahun ulang tahun dikunci supaya hitung mundur tidak melompat ke tahun depan setelah harinya lewat
-  welcome: { greeting: "Haloo", line: "Aku punya kejutan kecil yang nungguin kamu.", button: "Coba buka deh" }, // teks di layar pembuka
+  welcome: { greeting: "Haloo", line: "Aku punya kejutan kecil buat kamu", button: "Coba buka deh" }, // teks di layar pembuka
   lockUntilDay: false, // true = kado & surat terkunci sampai tanggal ulang tahun (tetap bisa dicoba lewat #uji)
-  claimWA: "6282283528053", // nomor WhatsApp, format 62812xxxxxxx; dipakai kalau claimIG kosong
-  claimIG: "hetzzz_", // username Instagram-mu tanpa @ (misal "namakamu"); kalau diisi, balasan dikirim lewat DM Instagram dan menggantikan WhatsApp
+  claimWA: "6282283528053", // nomor WhatsApp-mu, format 62812xxxxxxx; balasan surat dan klaim voucher dikirim ke nomor ini lewat WhatsApp
   claimMsg: "Aku mau klaim voucher makan malamnya dong! Kapan kita pergi? \uD83C\uDF9F\uFE0F",
   replyPrefix: "Balasan untuk suratmu:", // judul pesan WhatsApp sebelum isi balasan
   music: "musik/hannahmontana.mp3", // isi dengan data: URI atau tautan lagu bila sudah ada
+  candleColors: ["#c8396f", "#e8a23a"], // warna lilin, bergantian dari kiri ke kanan; isi satu warna saja kalau mau seragam
   age: 25, // umur Dia untuk lilin di kue (sampai 12 tahun lilinnya satuan, di atas itu berbentuk angka)
-  wish: "Semoga semua yang kamu harapkan terwujud ya.",
+  wish: "Semoga semua yang kamu harapkan terwujud ya",
   bouquetColors: ["#c8396f", "#f06a9b", "#e8a23a", "#fff7fb", "#8b5cc4"], // warna bunga di buket digital; ganti dengan warna favorit Dia
   gifts: [
-    {icon: "💐", label: "Buket", color: "#c8396f", bouquet: true, text: "Makasih ya, udah jadi orang yang bikin aku paling nyaman jadi diri sendiri."},
-    {icon: "🎟️", label: "Voucher", color: "#7a4fbf", voucher: true, text: "Voucher makan malam di tempat yang kamu pilih. Aku yang traktir ya!", note: "Klaimnya nanti di bagian paling akhir, bareng balasan buat suratku ya."}
+    {icon: "💐", label: "Buket", color: "#c8396f", ribbon: "#f2b84f", bouquet: true, text: "Makasih ya, udah jadi orang yang bikin aku paling nyaman jadi diri sendiri."},
+    {icon: "🎟️", label: "Voucher", color: "#e8a23a", ribbon: "#c8396f", voucher: true, text: "Voucher makan malam di tempat yang kamu pilih, aku yang traktir!", note: "Klaimnya nanti di bagian paling akhir 😋"}
   ],
   quizDone: "Semuanya benar. Kamu memang ingat semuanya.", // kalimat penutup setelah semua pertanyaan terjawab benar
   quiz: [ // contoh pertanyaan, ganti dengan hal yang hanya kalian berdua tahu; answer = nomor pilihan benar (mulai dari 0); no = komentar kalau salah: satu teks untuk semua pilihan, ATAU daftar teks sesuai urutan pilihan (isi "" di posisi jawaban benar)
-    {q:"Gimana kita bisa kenal?", options:["Di kampus","Di tempat kerja","Lewat teman","Lewat aplikasi"], answer:2, yes:"Betul! Jangan lupa bilang makasih ke mereka.", no:["Bukan di kampus, hehe.","Bukan di tempat kerja juga.","","Aplikasi? Jangan-jangan kamu lupa ya."]},
-    {q:"Film pertama yang kita tonton bareng?", options:["Avatar: Fire and Ash","Danur: The Last Chapter","Spider-Man: Brand New Day","Supergirl"], answer:1, yes:"Betul! Ternyata kamu ingat juga.", no:["Bukan, nggak ada makhluk biru di film kita.","","Bukan itu, coba ingat-ingat lagi ya.","Salah pahlawan, sayang. Coba lagi ya."]},
-    {q:"Siapa yang lebih sering ngalah kalau lagi berantem?", options:["Aku, yang kirim ini","Kamu, Agnes","Gantian","Nggak ada"], answer:0, yes:"Hehe, jujur banget.", no:["","Kamu terlalu baik, Agnes. Ayo jujur.","Gantian? Idealnya sih iya.","Masa nggak ada sih? Ayo diingat lagi."]}
+    {q:"Gimana kita bisa kenal?", options:["Di kampus","Di tempat kerja","Lewat teman","Lewat aplikasi"], answer:2, yes:"Betul! Jangan lupa bilang makasih ke mereka", no:["Bukan di kampus, hehe","Bukan di tempat kerja juga","","Aplikasi? Jangan-jangan kamu lupa ya"]},
+    {q:"Film pertama yang kita tonton bareng?", options:["Avatar: Fire and Ash","Danur: The Last Chapter","Spider-Man: Brand New Day","Ghost in the Cell"], answer:1, yes:"Betul! Ternyata kamu ingat juga", no:["Bukan, nggak ada makhluk biru di film kita","","Bukan itu, coba ingat-ingat lagi ya","Salah, Coba lagi ya"]},
+    {q:"Siapa yang lebih sering ngalah kalau lagi berantem?", options:["Aku, yang kirim ini","Kamu, Agnes","Gantian","Nggak ada"], answer:0, yes:"Hehe, jujur banget", no:["","Kamu terlalu baik, Agnes. Ayo jujur","Gantian? Idealnya sih iya","Masa nggak ada sih? Ayo diingat lagi"]}
   ],
   puzzle: { // foto untuk puzzle: potret 3:4 (misalnya 900x1200 px). Kosongkan src untuk gambar contoh.
     src: "foto/fotosatu.jpg", // contoh: "foto1.jpg"
@@ -381,14 +417,16 @@ var CONFIG = {
   bookTitle: "Kenangan Kita", // tulisan di sampul buku
   bookEnd: "Dan masih banyak halaman kosong yang nunggu kita isi bareng.", // halaman terakhir setelah foto
   letter: [
-    "Agnes sayang,",
-    "Selamat ulang tahun yang ke-25 ya. Akhirnya hari ini datang juga, dan aku senang banget bisa jadi salah satu orang yang ada di hari spesialmu.",
-    "Aku masih ingat pertama kali kita nonton bareng, Danur: The Last Chapter. Waktu itu aku belum tahu kalau momen sederhana kayak gitu bakal jadi salah satu kenangan yang paling sering kuingat.",
-    "Yang paling aku syukuri dari kamu itu sederhana: di dekat kamu, aku bisa jadi diri sendiri. Nggak perlu pura-pura, nggak perlu jaim. Dan itu berharga banget buat aku.",
-    "Di umur yang baru ini, aku cuma berharap kamu selalu sehat, selalu bahagia, dan dikelilingi orang-orang yang sayang sama kamu. Semoga semua yang kamu cita-citakan satu per satu jadi nyata, dan semoga aku boleh ada di sana buat lihat dan nemenin.",
-    "Buket kecil dan voucher makan malam tadi nggak seberapa dibanding yang kamu kasih ke aku tiap hari. Itu cuma cara kecilku bilang makasih.",
-    "Masih banyak hari yang mau aku lewatin bareng kamu. Aku nggak sabar.",
-    "Sekali lagi, selamat ulang tahun, sayang.",
+    "Untuk Agnes,",
+    "Selamat ulang tahun, sayang. Dua puluh lima. Aku sempat lama menatap layar sebelum mulai menulis ini, karena aku mau semua kalimatnya jujur dari dalam hati, bukan sekadar kata-kata yang bagus.",
+    "Aku bukan orang yang gampang bicara soal perasaan. Sering kali aku cuma diam dan berharap kamu paham sendiri. Tapi kamu pantas mendengarnya langsung, bukan ditebak-tebak. Jadi hari ini aku coba.",
+    "Sejak ada kamu, hari-hariku punya warna yang dulu nggak kukenal. Hal-hal kecil yang tadinya biasa saja, seperti tawamu, suaramu, atau cuma tahu kamu ada di sana, sekarang bisa bikin dadaku hangat dan aku senyum sendiri tanpa sadar.",
+    "Di dekat kamu, aku nggak perlu jadi versi terbaik dari diriku. Aku boleh capek, boleh salah, boleh apa adanya, dan kamu tetap tinggal. Itu hadiah yang nggak pernah kuminta, tapi kamu kasih setiap hari.",
+    "Aku tahu aku belum sempurna. Kadang aku keras kepala, kadang telat peka. Makasih ya sudah sabar, sudah mau mengerti, dan nggak pernah membuatku merasa harus menjadi orang lain.",
+    "Di umur yang baru ini, aku nggak minta banyak. Semoga kamu sehat, semoga kamu bahagia dengan caramu sendiri, dan semoga satu per satu mimpimu jadi kenyataan. Aku mau jadi orang pertama yang bertepuk tangan di setiap langkahmu, dan orang pertama yang memelukmu di hari-hari yang berat.",
+    "Kalau boleh jujur, yang paling kutakutkan bukan hal besar. Aku cuma takut suatu hari lupa bilang betapa berartinya kamu. Makanya kutulis semuanya di sini, biar bisa kamu baca ulang kapan pun kamu ragu.",
+    "Terima kasih sudah lahir ke dunia ini, dan terima kasih sudah memilih ada di hidupku. Aku sayang kamu, lebih dari yang bisa muat di halaman mana pun.",
+    "Kalau suratku ini bikin hatimu hangat, balas di bawah ya. Tulis apa saja yang kamu rasakan, nanti sampai ke aku lewat WhatsApp. Sekalian klaim voucher makan malamnya, tempatnya kamu yang pilih.",
     "Dari aku, yang selalu sayang sama kamu."
   ]
 };
@@ -424,6 +462,23 @@ function isOpen(){
   return !CONFIG.lockUntilDay || location.hash === "#uji" || new Date() >= birthday;
 }
 if (location.hash === "#uji") { target = new Date(now.getTime() - 1000); } // tambahkan #uji di akhir link untuk melihat tampilan hari H
+var CU = null;
+function buildCount(){ // kartu dibuat sekali; setelah itu hanya angka yang berubah yang digulirkan
+  var c = $("count");
+  c.innerHTML = '<div class="cus">' + [["d","hari"],["h","jam"],["m","menit"],["s","detik"]].map(function(u){ return '<div class="cu ' + u[0] + '"><b><i>00</i></b><span>' + u[1] + '</span></div>'; }).join("")
+    + '</div><div class="cprog" aria-hidden="true"><i></i><b>\u2665</b></div><div class="cpt" id="cpt"></div>';
+  CU = {bar: c.querySelector(".cprog")};
+  ["d","h","m","s"].forEach(function(k){ CU[k] = {box: c.querySelector(".cu." + k), b: c.querySelector(".cu." + k + " b"), ready: false}; });
+}
+function setUnit(k, val){
+  var u = CU[k], v = String(val); if (v.length < 2) v = "0" + v;
+  var cur = u.b.lastElementChild; if (cur.textContent === v) return;
+  if (!u.ready) { cur.textContent = v; u.ready = true; return; } // isi pertama tanpa animasi
+  [].forEach.call(u.b.querySelectorAll(".old"), function(o){ o.remove(); });
+  cur.className = "old"; var n = document.createElement("i"); n.className = "new"; n.textContent = v; u.b.appendChild(n);
+  setTimeout(function(){ if (cur.parentNode) cur.remove(); n.className = ""; }, 520);
+  if (k === "s") { u.box.classList.remove("beat"); void u.box.offsetWidth; u.box.classList.add("beat"); }
+}
 function tick(){
   var d = target - new Date();
   if (d <= 0) {
@@ -433,8 +488,13 @@ function tick(){
     return false;
   }
   var s = Math.floor(d / 1000), days = Math.floor(s / 86400), h = Math.floor(s % 86400 / 3600), m = Math.floor(s % 3600 / 60), sec = s % 60;
-  $("count").innerHTML = [[days,"hari"],[h,"jam"],[m,"menit"],[sec,"detik"]].map(function(x){return "<div><b>"+x[0]+"</b><span>"+x[1]+"</span></div>"}).join("");
-  $("note").textContent = "Sebentar lagi hari spesialmu, " + CONFIG.day + " " + BULAN[CONFIG.month - 1] + ".";
+  if (!CU) buildCount();
+  setUnit("d", days); setUnit("h", h); setUnit("m", m); setUnit("s", sec);
+  var span = (CONFIG.countdownDays || 30) * 86400000, pr = Math.max(0, Math.min(1, 1 - d / span)); // jalur terisi selama sebulan terakhir
+  CU.bar.style.setProperty("--p", (pr * 100).toFixed(2) + "%");
+  $("cpt").textContent = pr > 0 ? Math.floor(pr * 100) + "% menuju hari spesialmu" : "Perjalanan menuju hari spesialmu baru dimulai";
+  $("count").setAttribute("aria-label", days + " hari " + h + " jam " + m + " menit lagi menuju hari ulang tahun");
+  $("note").textContent = "Sebentar lagi hari spesialmu, " + CONFIG.day + " " + BULAN[CONFIG.month - 1] + "";
   return true;
 }
 var iv = null;
@@ -443,9 +503,10 @@ if (tick()) iv = setInterval(function(){ if (!tick()) { clearInterval(iv); windo
 // Kado
 var claimed = {}, cur = -1, lastFocus = null;
 function esc(t){ return String(t == null ? "" : t).replace(/[&<>"]/g, function(c){ return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]; }); }
-var GIFT_COL = ["#c8396f", "#7a4fbf", "#e8a23a", "#4fb99f"];
+var GIFT_COL = ["#c8396f", "#e8a23a", "#f06a9b", "#e8a23a"]; // warna kotak bawaan: mawar, emas hangat, merah muda
+var GIFT_RB = ["#f2b84f", "#c8396f", "#fff1dc", "#c8396f"]; // warna pita bawaan: emas, mawar, krem
 function giftSVG(g, i){ // kotak kado tiga dimensi: badan, tutup, pita, dan simpul; isinya muncul saat tutup terangkat
-  var c = g.color || GIFT_COL[i % GIFT_COL.length], rb = g.ribbon || "#f2b84f", id = "g" + i;
+  var c = g.color || GIFT_COL[i % GIFT_COL.length], rb = g.ribbon || GIFT_RB[i % GIFT_RB.length], id = "g" + i;
   var cF1 = shade(c, .12), cF2 = shade(c, -.22), cS = shade(c, -.38), cT = shade(c, .22), cI = shade(c, -.62);
   var rF1 = shade(rb, .35), rF2 = shade(rb, -.12), rS = shade(rb, -.3), rT = shade(rb, .3);
   var loop = '<path d="M100 80 C88 54 52 50 52 66 C52 80 84 88 100 80Z" fill="' + rF1 + '"/><path d="M97 79 C86 62 62 60 62 68 C62 76 84 82 97 79Z" fill="' + rF2 + '"/>';
@@ -482,7 +543,7 @@ function giftSVG(g, i){ // kotak kado tiga dimensi: badan, tutup, pita, dan simp
     + '</g></svg>';
 }
 $("gifts").innerHTML = CONFIG.gifts.map(function(g,i){
-  return '<button class="gift" data-i="'+i+'" aria-label="Buka '+esc(g.label)+'">'+giftSVG(g,i)+'<span class="glab">'+esc(g.label)+'</span></button>';
+  return '<button class="gift" data-i="'+i+'" aria-label="Buka kado '+(i + 1)+'">'+giftSVG(g,i)+'<span class="glab">'+esc(g.hint || "Kado " + (i + 1))+'</span></button>'; // isi kado tidak ditulis di sini supaya tetap kejutan
 }).join("");
 var BQ_FL = [[120,62,32],[66,94,28],[174,94,28],[90,130,24],[150,130,24]]; // x, y, jari-jari tiap bunga di SVG buket (dipakai juga untuk titik jatuhnya kelopak)
 function bouquetSVG(){
@@ -528,7 +589,10 @@ $("gifts").addEventListener("click", function(e){
   if (b.classList.contains("vopen")) { showGift(i); return; }
   b.classList.add("vopen");
   boom(30, r.left + r.width / 2, r.top + r.height * .45, "spark");
-  b._t = setTimeout(function(){ showGift(i); }, matchMedia("(prefers-reduced-motion:reduce)").matches ? 0 : 750);
+  b._t = setTimeout(function(){
+    b.querySelector(".glab").textContent = CONFIG.gifts[i].label; b.setAttribute("aria-label", "Lihat lagi " + CONFIG.gifts[i].label); // nama kado baru terungkap setelah dibuka
+    showGift(i);
+  }, matchMedia("(prefers-reduced-motion:reduce)").matches ? 0 : 750);
 });
 $("mclose").onclick = closeGift;
 $("modal").addEventListener("click", function(e){ if (e.target === this) closeGift(); });
@@ -546,11 +610,33 @@ addEventListener("keydown", function(e){
 (function(){
   var P = CONFIG.photos, N = P.length, L = N + 1, idx = 0, book = $("book"), leaves = [], was = [], x0 = null, y0 = 0;
   function el(cls, tag){ var e = document.createElement(tag || "div"); e.className = cls; return e; }
+  function stk(k, c, c2){ // stiker tempel: isi berwarna dengan garis tepi putih
+    var o = ' stroke="#fff" stroke-width="3.4" stroke-linejoin="round" style="paint-order:stroke"', v = '<svg viewBox="0 0 32 32" aria-hidden="true" focusable="false">', c2 = c2 || "#ffd36b";
+    if (k === "heart") return v + '<path d="M16 28C5 20 3 13 7 9c3-3 7-1 9 2 2-3 6-5 9-2 4 4 2 11-9 19z" fill="' + c + '"' + o + '/><path d="M9.5 11.5c.8-1.6 2.6-1.8 3.8-.8" fill="none" stroke="#fff" stroke-opacity=".65" stroke-width="1.6" stroke-linecap="round"/></svg>';
+    if (k === "star") return v + '<path d="M16 3l3.9 8.1 8.9 1.2-6.5 6.2 1.6 8.8L16 23l-7.9 4.3 1.6-8.8L3.2 12.3l8.9-1.2z" fill="' + c + '"' + o + '/></svg>';
+    if (k === "sparkle") return v + '<path d="M16 2c1 9 5 13 14 14-9 1-13 5-14 14-1-9-5-13-14-14 9-1 13-5 14-14z" fill="' + c + '"' + o + '/></svg>';
+    if (k === "flower") { var pt = ""; [0, 72, 144, 216, 288].forEach(function(a){ pt += '<ellipse cx="16" cy="9" rx="5.2" ry="6.6" transform="rotate(' + a + ' 16 16)"/>'; }); return v + '<g fill="' + c + '"' + o + '>' + pt + '</g><circle cx="16" cy="16" r="4" fill="' + c2 + '"/></svg>'; }
+    if (k === "butterfly") return v + '<g fill="' + c + '"' + o + '><ellipse cx="9.5" cy="11" rx="7" ry="6.5" transform="rotate(-25 9.5 11)"/><ellipse cx="22.5" cy="11" rx="7" ry="6.5" transform="rotate(25 22.5 11)"/><ellipse cx="10.5" cy="22" rx="5" ry="4.8" transform="rotate(20 10.5 22)"/><ellipse cx="21.5" cy="22" rx="5" ry="4.8" transform="rotate(-20 21.5 22)"/></g><rect x="15" y="8" width="2" height="18" rx="1" fill="#4a2a52"/><circle cx="9" cy="11" r="2.2" fill="' + c2 + '"/><circle cx="23" cy="11" r="2.2" fill="' + c2 + '"/></svg>';
+    return v + '<g fill="' + c + '"' + o + '><ellipse cx="16" cy="7" rx="3.6" ry="5.4"/><ellipse cx="9.5" cy="14" rx="3.4" ry="5.2" transform="rotate(-50 9.5 14)"/><ellipse cx="22.5" cy="14" rx="3.4" ry="5.2" transform="rotate(50 22.5 14)"/><ellipse cx="10.5" cy="22" rx="3.2" ry="5" transform="rotate(-45 10.5 22)"/><ellipse cx="21.5" cy="22" rx="3.2" ry="5" transform="rotate(45 21.5 22)"/></g><path d="M16 29V10" stroke="#2f7a66" stroke-width="1.5" stroke-linecap="round" fill="none"/></svg>'; // daun
+  }
+  var DECO = [ // [jenis, warna, putaran, ukuran px, warna kedua]; tiap halaman dapat dua stiker di sudut foto
+    [["flower", "#f06a9b", -12, 46, "#ffd36b"], ["sparkle", "#f2b84f", 10, 26, ""]],
+    [["butterfly", "#9a6bd6", 14, 42, "#ffd36b"], ["heart", "#e0558c", -14, 34, ""]],
+    [["star", "#f2b84f", -10, 32, ""], ["leaf", "#58c0a2", 18, 44, ""]],
+    [["flower", "#ffc2d6", 12, 44, "#f2b84f"], ["sparkle", "#f2b84f", -8, 28, ""]],
+    [["heart", "#f06a9b", -16, 34, ""], ["flower", "#9a6bd6", 10, 42, "#ffd36b"]],
+    [["leaf", "#58c0a2", -10, 44, ""], ["butterfly", "#e0558c", -12, 40, "#ffd36b"]]
+  ];
+  function dcHTML(d, pos){ return '<span class="dc ' + pos + '" style="width:' + d[3] + 'px;height:' + d[3] + 'px;transform:rotate(' + d[2] + 'deg)">' + stk(d[0], d[1], d[4]) + '</span>'; }
+  function addDeco(mt, i){ // halaman bernomor genap memakai selotip di atas, jadi stikernya di kiri-atas dan kanan-bawah; yang ganjil kebalikannya
+    var pos = i % 2 ? ["tr", "bl"] : ["tl", "br"];
+    DECO[i % DECO.length].forEach(function(d, n){ mt.insertAdjacentHTML("beforeend", dcHTML(d, pos[n])); });
+  }
   book.appendChild(el("bedge b")); book.appendChild(el("bedge r")); book.appendChild(el("rib")); // tebal tumpukan halaman dan pita penanda
-  var end = el("bend"); end.innerHTML = '<span>\u2665</span><p></p><i class="cs"></i>';
+  var end = el("bend"); end.innerHTML = '<span>\u2665</span><p></p><i class="cs"></i>' + [[["flower", "#f06a9b", -10, 46, "#ffd36b"], "tl"], [["butterfly", "#9a6bd6", 12, 40, "#ffd36b"], "tr"], [["leaf", "#58c0a2", -14, 44, ""], "bl"], [["heart", "#e0558c", 10, 34, ""], "br"]].map(function(x){ return dcHTML(x[0], x[1]); }).join("");
   end.querySelector("p").textContent = CONFIG.bookEnd || ""; book.appendChild(end);
   var cov = el("leaf cover");
-  cov.innerHTML = '<div class="face cfront"><div class="ci"><h3></h3><span class="ch">\u2665</span><small>Usap untuk membuka</small></div><i class="gl"></i></div><div class="face fb cback"><i class="gl"></i></div>';
+  cov.innerHTML = '<div class="face cfront"><i class="co a"></i><i class="co b"></i><i class="co c"></i><i class="co d"></i><div class="ci"><svg class="orn" viewBox="0 0 120 22" aria-hidden="true"><g fill="none" stroke="#f2b84f" stroke-width="1.6" stroke-linecap="round"><path d="M6 11h32c8 0 8-8 16-8 5 0 6 5 3 7-3 2-6-1-4-3"/><path d="M114 11H82c-8 0-8-8-16-8-5 0-6 5-3 7 3 2 6-1 4-3"/></g><path d="M60 5l4 6-4 6-4-6z" fill="#f2b84f"/></svg><h3></h3><span class="ch">\u2665</span><svg class="orn flip" viewBox="0 0 120 22" aria-hidden="true"><g fill="none" stroke="#f2b84f" stroke-width="1.6" stroke-linecap="round"><path d="M6 11h32c8 0 8-8 16-8 5 0 6 5 3 7-3 2-6-1-4-3"/><path d="M114 11H82c-8 0-8-8-16-8-5 0-6 5-3 7 3 2 6-1 4-3"/></g><path d="M60 5l4 6-4 6-4-6z" fill="#f2b84f"/></svg><small>Usap untuk membuka</small></div><i class="gl"></i></div><div class="face fb cback"><i class="gl"></i></div>';
   cov.querySelector("h3").textContent = CONFIG.bookTitle || "Kenangan Kita"; leaves.push(cov);
   P.forEach(function(p, i){
     var pg = el("leaf pg"), fr = el("face pf"), bk = el("face fb pback"), mt = el("bmount " + (i % 2 ? "corners" : "tape")),
@@ -558,7 +644,7 @@ addEventListener("keydown", function(e){
     mt.style.setProperty("--rot", (i % 2 ? .9 : -1.2) + "deg");
     if (p.src) ph.style.backgroundImage = 'url("' + p.src + '")';
     cap.textContent = p.caption || ""; pn.textContent = i + 1;
-    mt.appendChild(ph); fr.appendChild(mt); fr.appendChild(cap); fr.appendChild(pn); fr.appendChild(el("cs", "i")); fr.appendChild(el("gl", "i"));
+    mt.appendChild(ph); addDeco(mt, i); fr.appendChild(mt); fr.appendChild(cap); fr.appendChild(pn); fr.appendChild(el("cs", "i")); fr.appendChild(el("gl", "i"));
     bk.appendChild(el("gl", "i")); pg.appendChild(fr); pg.appendChild(bk); leaves.push(pg);
   });
   leaves.forEach(function(lf, i){ lf.style.zIndex = L - i + 1; book.appendChild(lf); });
@@ -657,8 +743,7 @@ function showReply(auto){
 }
 (function(){
   var hasV = CONFIG.gifts.some(function(g){ return g.voucher; }), box = $("rvoucher"), ta = $("rtext"), note = $("rnote"), btn = $("rsend");
-  var ig = String(CONFIG.claimIG || "").replace(/^.*instagram\.com\//i, "").replace(/[\/?#].*$/, "").replace(/[^A-Za-z0-9._]/g, "");
-  var wa = String(CONFIG.claimWA || "").replace(/\D/g, ""), via = ig ? "DM Instagram" : wa ? "WhatsApp" : "";
+  var wa = String(CONFIG.claimWA || "").replace(/\D/g, ""), via = wa ? "WhatsApp" : "";
   $("rclaim").hidden = !hasV;
   $("rsub").textContent = "Tulis apa yang kamu rasakan." + (via ? " Balasannya sampai ke aku lewat " + via + "." : "");
   btn.textContent = via ? "Kirim lewat " + via : "Salin balasanku";
@@ -677,12 +762,7 @@ function showReply(auto){
     if (txt) parts.push((CONFIG.replyPrefix || "Balasan untuk suratmu:") + "\n" + txt);
     if (claim) parts.push(CONFIG.claimMsg || "Aku mau klaim vouchernya!");
     var msg = parts.join("\n\n");
-    if (ig) { // Instagram tidak bisa mengisi pesan otomatis lewat tautan, jadi pesan disalin lalu DM dibuka
-      var cp = copyText(msg), url = "https://www.instagram.com/" + ig + "/";
-      if (!window.open(url, "_blank")) location.href = url;
-      cp.then(function(ok){ note.textContent = ok ? "Pesanmu sudah disalin. Di profilku, ketuk Kirim pesan, lalu tempel dan kirim ya \uD83D\uDC8C" : "Pesannya belum bisa disalin otomatis. Salin dari kolom di atas, lalu tempel di DM ya."; });
-      boom(26, null, null, "heart");
-    } else if (wa) {
+    if (wa) {
       var u2 = "https://wa.me/" + wa + "?text=" + encodeURIComponent(msg);
       if (!window.open(u2, "_blank")) location.href = u2;
       note.textContent = "WhatsApp-nya terbuka. Tinggal tekan kirim di sana ya \uD83D\uDC8C";
@@ -696,7 +776,7 @@ function showReply(auto){
 // Kue
 var blown = false;
 (function(){
-  var age = Math.max(1, Math.floor(CONFIG.age || 5)), c = "", sm = "", i;
+  var age = Math.max(1, Math.floor(CONFIG.age || 5)), c = "", sm = "", i, cc = CONFIG.candleColors && CONFIG.candleColors.length ? CONFIG.candleColors : ["#c8396f", "#e8a23a"];
   function flame(x, y){
     return '<g class="flame"><circle cx="'+x+'" cy="'+(y+2)+'" r="13" fill="#ffd36b" opacity=".3"/>'
       + '<ellipse cx="'+x+'" cy="'+y+'" rx="5.5" ry="9" fill="#f5a524"/><ellipse cx="'+x+'" cy="'+(y+3)+'" rx="2.6" ry="5" fill="#ffe28a"/></g>';
@@ -704,7 +784,7 @@ var blown = false;
   function wisp(x, y){ return '<path class="smoke" d="M'+x+' '+y+' q5 -7 0 -13 q-5 -6 0 -12"/>'; }
   if (age <= 12) {
     for (i = 0; i < age; i++) {
-      var x = age === 1 ? 120 : 70 + i * 100 / (age - 1), col = i % 2 ? "#8b5cc4" : "#4fb99f";
+      var x = age === 1 ? 120 : 70 + i * 100 / (age - 1), col = cc[i % cc.length];
       c += '<rect x="'+(x-4)+'" y="46" width="8" height="27" rx="2" fill="'+col+'"/>'
          + '<path d="M'+(x-4)+' 57 l8 -5 M'+(x-4)+' 66 l8 -5" stroke="#fff" stroke-width="2.2" opacity=".55"/>'
          + '<rect x="'+(x-.6)+'" y="42" width="1.2" height="5" rx=".6" fill="#4b3a52"/>'
@@ -714,10 +794,10 @@ var blown = false;
   } else {
     var d = String(age).split("").slice(0, 3);
     d.forEach(function(ch, i){
-      var x = 120 + (i - (d.length - 1) / 2) * 44, col = i % 2 ? "#8b5cc4" : "#4fb99f";
+      var x = 120 + (i - (d.length - 1) / 2) * 44, col = cc[i % cc.length];
       c += '<rect x="'+(x-18)+'" y="28" width="36" height="46" rx="9" fill="'+col+'"/>'
          + '<rect x="'+(x-14)+'" y="31" width="5" height="40" rx="2.5" fill="#fff" opacity=".18"/>'
-         + '<text x="'+x+'" y="64" text-anchor="middle" font-family="Young Serif,Georgia,serif" font-size="34" fill="#fff">'+ch+'</text>'
+         + '<text x="'+x+'" y="64" text-anchor="middle" font-family="Young Serif,Georgia,serif" font-size="34" fill="#fff" stroke="#6b2a4a" stroke-opacity=".5" stroke-width="1.4" stroke-linejoin="round" style="paint-order:stroke">'+ch+'</text>'
          + '<rect x="'+(x-.6)+'" y="21" width="1.2" height="8" rx=".6" fill="#4b3a52"/>'
          + flame(x, 18);
       sm += wisp(x, 8);
@@ -731,7 +811,7 @@ var blown = false;
   // tetesan krim tingkat atas
   [[68,18],[100,24],[132,16],[160,22]].forEach(function(t){ k += '<rect x="'+t[0]+'" y="78" width="11" height="'+t[1]+'" rx="5.5" fill="#fff7fb"/>'; });
   // taburan
-  [[64,102,30,"#c8396f"],[88,106,-40,"#8b5cc4"],[114,100,15,"#4fb99f"],[140,107,-25,"#c8396f"],[164,100,50,"#8b5cc4"],[178,107,-10,"#4fb99f"]].forEach(function(t){
+  [[64,102,30,"#c8396f"],[88,106,-40,"#8b5cc4"],[114,100,15,"#e8a23a"],[140,107,-25,"#c8396f"],[164,100,50,"#8b5cc4"],[178,107,-10,"#e8a23a"]].forEach(function(t){
     k += '<rect x="'+(t[0]-4)+'" y="'+(t[1]-1.3)+'" width="8" height="2.6" rx="1.3" fill="'+t[3]+'" transform="rotate('+t[2]+' '+t[0]+' '+t[1]+')"/>';
   });
   // ceri
@@ -765,7 +845,7 @@ function blow(){
   boom(26, cr.left + cr.width / 2, cr.top + cr.height * .3, "spark");
 }
 $("cake").onclick = blow; // ketuk kue = cadangan cepat; hapus baris ini kalau mau hanya lewat tahan tombol
-$("wish").textContent = "Tahan tombolnya sampai apinya padam ya.";
+$("wish").textContent = "Tahan tombolnya sampai apinya padam";
 (function(){
   var btn = $("blow"), cake = $("cake"), HOLD = 1100, t0 = 0, raf = 0, holding = false;
   function reset(){
