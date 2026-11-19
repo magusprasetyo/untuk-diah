@@ -211,12 +211,12 @@ footer{padding:30px 20px 50px;color:var(--soft);font-size:.9rem}
   <div class="wglow" aria-hidden="true"></div>
   <div class="wfloat" aria-hidden="true"><i>&#9829;</i><i>&#9829;</i><i>&#9829;</i><i>&#9829;</i><i>&#9829;</i><i>&#9829;</i><i>&#9829;</i></div>
   <div class="wi wgift" aria-hidden="true">&#127873;</div>
-  <p class="wi wgreet" id="wgreet" style="animation-delay:.15s">Haloo,</p>
+  <p class="wi wgreet" id="wgreet" style="animation-delay:.15s">Haloo</p>
   <h2 class="wi" id="wname" style="animation-delay:.3s"></h2>
   <div class="wi wline" aria-hidden="true" style="animation-delay:.5s"><span></span>&#9829;<span></span></div>
-  <p class="wi wsub" id="wsub" style="animation-delay:.65s">Ada kejutan kecil yang nungguin kamu.</p>
+  <p class="wi wsub" id="wsub" style="animation-delay:.65s">Aku punya kejutan kecil yang nungguin kamu.</p>
   <button class="btn" id="start" style="position:relative">Coba buka deh</button>
-  <small class="whint" id="whint" hidden>Nyalakan suaranya ya, ada lagunya &#9834;</small>
+  <small class="whint" id="whint" hidden>Nyalain suaranya yaa &#9834;</small>
 </div>
 
 <section class="hero">
@@ -227,8 +227,8 @@ footer{padding:30px 20px 50px;color:var(--soft);font-size:.9rem}
 </section>
 
 <section>
-  <h2>Make a wish dulu, yuk</h2>
-  <p class="sub">Pejamin mata sebentar, terus tiup lilinnya.</p>
+  <h2>Make a wish dulu yaps</h2>
+  <p class="sub">Pejamin mata sebentar, terus tiup lilinnya</p>
   <div class="cake" id="cake"></div>
   <p class="wish" id="wish" aria-live="polite"></p>
   <div class="row" id="cakebtns">
@@ -238,7 +238,7 @@ footer{padding:30px 20px 50px;color:var(--soft);font-size:.9rem}
 
 <section>
   <h2>Aku punya dua kado kecil buat kamu</h2>
-  <p class="sub">Ketuk kadonya satu-satu.</p>
+  <p class="sub">Ketuk kadonya satu-satu</p>
   <div class="gifts" id="gifts"></div>
   <div class="modal" id="modal" role="dialog" aria-modal="true" aria-labelledby="mt">
     <div class="mcard">
@@ -261,7 +261,7 @@ footer{padding:30px 20px 50px;color:var(--soft);font-size:.9rem}
 
 <section>
   <h2>Susun kenangan</h2>
-  <p class="sub">Ketuk dua potongan buat tukar posisinya, sampai fotonya utuh ya.</p>
+  <p class="sub">Ketuk dua potongan buat tukar posisinya, sampai fotonya utuh ya</p>
   <div class="pzframe" id="pzframe">
     <div class="pzwrap" id="pzwrap"><div class="pz" id="pz"></div><div class="pzfull" id="pzfull"></div></div>
     <div class="pzcap"><b id="pzcapt"></b><small id="pzdate"></small></div>
@@ -275,7 +275,7 @@ footer{padding:30px 20px 50px;color:var(--soft);font-size:.9rem}
 
 <section>
   <h2>Kenangan kita</h2>
-  <p class="sub" id="gsub">Usap atau ketuk bukunya buat buka halaman berikutnya.</p>
+  <p class="sub" id="gsub">Usap atau ketuk bukunya buat buka halaman berikutnya</p>
   <div class="book" id="book" tabindex="0" role="group" aria-label="Buku foto kenangan"></div>
   <p class="bkst" id="bkst" aria-live="polite"></p>
   <div class="row">
@@ -286,20 +286,20 @@ footer{padding:30px 20px 50px;color:var(--soft);font-size:.9rem}
 
 <section>
   <h2>Satu hal lagi</h2>
-  <p class="sub">Kado terakhir dari aku.</p>
+  <p class="sub">Kado terakhir dari aku</p>
   <button class="btn" id="openLetter">Buka suratnya</button>
   <div class="lwrap" id="lwrap"><div class="letter" id="letter"></div></div>
-  <p class="skiphint" id="skiphint" hidden>Ketuk suratnya untuk menampilkan semuanya.</p>
+  <p class="skiphint" id="skiphint" hidden>Ketuk suratnya untuk menampilkan semuanya</p>
 </section>
 
-<footer>Dibuat dengan sayang, khusus buat Agnes.</footer>
+<footer>Dibuat dengan sayang, khusus buat Agnes</footer>
 
 <script>
 /* ====== ISI DI SINI: ganti teks, foto, dan musik sesuai bahan yang sudah ada ====== */
 var CONFIG = {
   name: "Agnes",
   month: 12, day: 8, year: 2026, // tahun ulang tahun dikunci supaya hitung mundur tidak melompat ke tahun depan setelah harinya lewat
-  welcome: { greeting: "Haloo,", line: "Ada kejutan kecil yang nungguin kamu.", button: "Coba buka deh" }, // teks di layar pembuka
+  welcome: { greeting: "Haloo", line: "Aku punya kejutan kecil yang nungguin kamu.", button: "Coba buka deh" }, // teks di layar pembuka
   lockUntilDay: false, // true = kado & surat terkunci sampai tanggal ulang tahun (tetap bisa dicoba lewat #uji)
   claimWA: "6282283528053", // nomor WhatsApp-mu format 62812xxxxxxx; kalau diisi, tombol Klaim voucher membuka chat ke nomor ini
   claimMsg: "Aku mau klaim voucher makan malamnya dong! Kapan kita pergi? \uD83C\uDF9F\uFE0F",
@@ -309,12 +309,12 @@ var CONFIG = {
   bouquetColors: ["#c8396f", "#f06a9b", "#e8a23a", "#fff7fb", "#8b5cc4"], // warna bunga di buket digital; ganti dengan warna favorit Dia
   gifts: [
     {icon: "💐", label: "Buket", bouquet: true, text: "Makasih ya, udah jadi orang yang bikin aku paling nyaman jadi diri sendiri."},
-    {icon: "🎟️", label: "Voucher", voucher: true, text: "Voucher makan malam di tempat yang kamu pilih. Aku yang traktir, ya!"}
+    {icon: "🎟️", label: "Voucher", voucher: true, text: "Voucher makan malam di tempat yang kamu pilih. Aku yang traktir ya!"}
   ],
   quiz: [ // contoh pertanyaan, ganti dengan hal yang hanya kalian berdua tahu; answer = nomor pilihan benar (mulai dari 0); no = komentar kalau salah: satu teks untuk semua pilihan, ATAU daftar teks sesuai urutan pilihan (isi "" di posisi jawaban benar)
     {q:"Gimana kita bisa kenal?", options:["Di kampus","Di tempat kerja","Lewat teman","Lewat aplikasi"], answer:2, yes:"Betul! Jangan lupa bilang makasih ke mereka.", no:["Bukan di kampus, hehe.","Bukan di tempat kerja juga.","","Aplikasi? Jangan-jangan kamu lupa ya."]},
     {q:"Film pertama yang kita tonton bareng?", options:["Avatar: Fire and Ash","Danur: The Last Chapter","Spider-Man: Brand New Day","Supergirl"], answer:1, yes:"Betul! Ternyata kamu ingat juga.", no:["Bukan, nggak ada makhluk biru di film kita.","","Bukan itu, coba ingat-ingat lagi ya.","Salah pahlawan, sayang. Coba lagi ya."]},
-    {q:"Siapa yang lebih sering ngalah kalau lagi debat?", options:["Aku, yang kirim ini","Kamu, Agnes","Gantian","Nggak ada"], answer:0, yes:"Hehe, jujur banget.", no:["","Kamu terlalu baik, Agnes. Ayo jujur.","Gantian? Idealnya sih iya.","Masa nggak ada sih? Ayo diingat lagi."]}
+    {q:"Siapa yang lebih sering ngalah kalau lagi berantem?", options:["Aku, yang kirim ini","Kamu, Agnes","Gantian","Nggak ada"], answer:0, yes:"Hehe, jujur banget.", no:["","Kamu terlalu baik, Agnes. Ayo jujur.","Gantian? Idealnya sih iya.","Masa nggak ada sih? Ayo diingat lagi."]}
   ],
   puzzle: { // foto untuk puzzle: potret 3:4 (misalnya 900x1200 px). Kosongkan src untuk gambar contoh.
     src: "foto/fotosatu.jpg", // contoh: "foto1.jpg"
