@@ -176,7 +176,7 @@ footer{padding:30px 20px 50px;color:var(--soft);font-size:.9rem}
 </div>
 
 <section class="hero">
-  <small id="kicker">Ada kejutan kecil buat</small>
+  <small id="kicker">Kejutan kecil buat</small>
   <h1 id="name">Agnes</h1>
   <div class="count" id="count" aria-live="polite"></div>
   <p class="note" id="note"></p>
@@ -184,7 +184,7 @@ footer{padding:30px 20px 50px;color:var(--soft);font-size:.9rem}
 
 <section>
   <h2>Make a wish dulu, yuk</h2>
-  <p class="sub">Pejamin mata sebentar, terus tiup lilinnya ya.</p>
+  <p class="sub">Pejamin mata sebentar, terus tiup lilinnya.</p>
   <div class="cake" id="cake"></div>
   <p class="wish" id="wish" aria-live="polite"></p>
   <div class="row" id="cakebtns">
@@ -194,7 +194,7 @@ footer{padding:30px 20px 50px;color:var(--soft);font-size:.9rem}
 
 <section>
   <h2>Aku punya dua kado kecil buat kamu</h2>
-  <p class="sub">Ketuk kadonya satu-satu ya.</p>
+  <p class="sub">Ketuk kadonya satu-satu.</p>
   <div class="gifts" id="gifts"></div>
   <div class="modal" id="modal" role="dialog" aria-modal="true" aria-labelledby="mt">
     <div class="mcard">
@@ -210,7 +210,7 @@ footer{padding:30px 20px 50px;color:var(--soft);font-size:.9rem}
 </section>
 
 <section>
-  <h2>Tebak-tebakan, yuk</h2>
+  <h2>Tebak-tebakan yuk</h2>
   <p class="sub">Seberapa ingat kamu soal kita?</p>
   <div id="quiz"></div>
 </section>
@@ -257,15 +257,15 @@ var CONFIG = {
   month: 12, day: 8,
   welcome: { greeting: "Haloo,", line: "Ada kejutan kecil yang nungguin kamu.", button: "Coba buka deh" }, // teks di layar pembuka
   lockUntilDay: false, // true = kado & surat terkunci sampai tanggal ulang tahun (tetap bisa dicoba lewat #uji)
-  claimWA: "", // nomor WhatsApp-mu format 62812xxxxxxx; kalau diisi, tombol Klaim voucher membuka chat ke nomor ini
+  claimWA: "6282283528053", // nomor WhatsApp-mu format 62812xxxxxxx; kalau diisi, tombol Klaim voucher membuka chat ke nomor ini
   claimMsg: "Aku mau klaim voucher makan malamnya dong! Kapan kita pergi? \uD83C\uDF9F\uFE0F",
   music: "musik/hannahmontana.mp3", // isi dengan data: URI atau tautan lagu bila sudah ada
   age: 25, // umur Dia untuk lilin di kue (sampai 12 tahun lilinnya satuan, di atas itu berbentuk angka)
   wish: "Semoga semua yang kamu harapkan terwujud ya.",
   bouquetColors: ["#c8396f", "#f06a9b", "#e8a23a", "#fff7fb", "#8b5cc4"], // warna bunga di buket digital; ganti dengan warna favorit Dia
   gifts: [
-    {icon: "💐", label: "Buket buat kamu", bouquet: true, text: "Makasih ya, udah jadi orang yang bikin aku paling nyaman jadi diri sendiri."},
-    {icon: "🎟️", label: "Voucher makan malam", voucher: true, text: "Voucher makan malam di tempat yang kamu pilih. Aku yang traktir, ya!"}
+    {icon: "💐", label: "Buket", bouquet: true, text: "Makasih ya, udah jadi orang yang bikin aku paling nyaman jadi diri sendiri."},
+    {icon: "🎟️", label: "Voucher", voucher: true, text: "Voucher makan malam di tempat yang kamu pilih. Aku yang traktir, ya!"}
   ],
   quiz: [ // contoh pertanyaan, ganti dengan hal yang hanya kalian berdua tahu; answer = nomor pilihan benar (mulai dari 0); no = komentar kalau salah: satu teks untuk semua pilihan, ATAU daftar teks sesuai urutan pilihan (isi "" di posisi jawaban benar)
     {q:"Gimana kita bisa kenal?", options:["Di kampus","Di tempat kerja","Lewat teman","Lewat aplikasi"], answer:2, yes:"Betul! Jangan lupa bilang makasih ke mereka.", no:["Bukan di kampus, hehe.","Bukan di tempat kerja juga.","","Aplikasi? Jangan-jangan kamu lupa ya."]},
@@ -275,7 +275,7 @@ var CONFIG = {
   puzzle: { // foto untuk puzzle: potret 3:4 (misalnya 900x1200 px). Kosongkan src untuk gambar contoh.
     src: "foto/fotosatu.jpg", // contoh: "foto1.jpg"
     cols: 3, rows: 4,
-    caption: "First time?😆", // tulisan tangan di bawah polaroid
+    caption: "First time? 😆", // tulisan tangan di bawah polaroid
     date: "4 September 2026" // tulisan kecil di bawah caption, misalnya tanggal foto (kosongkan kalau tidak perlu)
   },
   photos: [ // enam halaman buku foto: src = alamat foto (potret 3:4, contoh "foto/1.jpg"), caption = tulisan di bawah foto
