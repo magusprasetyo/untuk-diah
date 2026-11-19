@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Untuk Diah</title>
+<title>Buat Agnes</title>
 <meta name="robots" content="noindex, nofollow">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Young+Serif&family=Nunito+Sans:wght@400;600&family=Caveat:wght@500;700&display=swap">
 <style>
-:root{--bg:#fdf0f4;--ink:#3b1f3f;--soft:#7a5a80;--card:#fff;--rose:#c8396f;--gold:#e8a23a;--line:#f0cfdb;color-scheme:light;
+:root{--bg:#fdf0f4;--ink:#3b1f3f;--soft:#7a5a80;--card:#fff;--rose:#c8396f;--gold:#e8a23a;--line:#f0cfdb;--err:#d62839;--ok:#1f8a4c;color-scheme:light;
 box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
-@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#1e1430;--ink:#fbe9f1;--soft:#c3a6c9;--card:#2c1d44;--rose:#f06a9b;--gold:#f2b84f;--line:#473063;color-scheme:dark}}
-:root[data-theme="dark"]{--bg:#1e1430;--ink:#fbe9f1;--soft:#c3a6c9;--card:#2c1d44;--rose:#f06a9b;--gold:#f2b84f;--line:#473063;color-scheme:dark}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#1e1430;--ink:#fbe9f1;--soft:#c3a6c9;--card:#2c1d44;--rose:#f06a9b;--gold:#f2b84f;--line:#473063;--err:#ff7a85;--ok:#5fd38d;color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#1e1430;--ink:#fbe9f1;--soft:#c3a6c9;--card:#2c1d44;--rose:#f06a9b;--gold:#f2b84f;--line:#473063;--err:#ff7a85;--ok:#5fd38d;color-scheme:dark}
 html{scroll-padding-top:env(safe-area-inset-top,0px)}
 *{box-sizing:border-box}
 body{margin:0;background:var(--bg);color:var(--ink);font:400 17px/1.6 "Nunito Sans",system-ui,sans-serif;text-align:center}
@@ -36,20 +36,46 @@ h2{font-size:clamp(1.7rem,6vw,2.3rem);margin-bottom:8px}
 .btn{font:600 1rem "Nunito Sans",sans-serif;background:var(--rose);color:#fff;border:0;border-radius:999px;padding:14px 28px;cursor:pointer}
 .letter{background:var(--card);border:1px solid var(--line);border-radius:22px;padding:26px 22px;margin-top:22px;text-align:left;font:500 1.45rem/1.5 Caveat,cursive;display:none}
 .letter.show{display:block}
+.skiphint{color:var(--soft);font-size:.85rem;margin:10px 0 0}
 .letter p{margin:0 0 .8em}
 .music{position:fixed;right:14px;top:calc(14px + env(safe-area-inset-top,0px));background:var(--card);border:1px solid var(--line);color:var(--ink);border-radius:999px;width:44px;height:44px;font-size:1.2rem;cursor:pointer;display:none;z-index:5}
 footer{padding:30px 20px 50px;color:var(--soft);font-size:.9rem}
 #fx{position:fixed;inset:0;pointer-events:none;z-index:9}
-.welcome{position:fixed;inset:0;z-index:8;background:var(--bg);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:18px;padding:20px;transition:opacity .6s}
+.welcome{position:fixed;inset:0;z-index:8;background:var(--bg);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:14px;padding:20px;overflow:hidden;transition:opacity .6s,transform .6s}
 .welcome h2{font-size:clamp(3.4rem,16vw,6rem);color:var(--rose)}
 .welcome p{margin:0;color:var(--soft)}
-.welcome.gone{opacity:0;pointer-events:none}
+.wglow{position:absolute;inset:0;opacity:.2;background:radial-gradient(60% 45% at 50% 38%,var(--rose),transparent 70%)}
+.wfloat{position:absolute;inset:0;overflow:hidden;pointer-events:none}
+.wfloat i{position:absolute;bottom:-30px;font-style:normal;color:var(--rose);opacity:0;animation:wrise 10s linear infinite}
+.wfloat i:nth-child(1){left:7%;font-size:14px;animation-delay:0s}
+.wfloat i:nth-child(2){left:22%;font-size:22px;animation-delay:2.5s;animation-duration:12s}
+.wfloat i:nth-child(3){left:38%;font-size:12px;animation-delay:5s;animation-duration:9s}
+.wfloat i:nth-child(4){left:55%;font-size:20px;animation-delay:1.2s;animation-duration:11s}
+.wfloat i:nth-child(5){left:70%;font-size:15px;animation-delay:6s}
+.wfloat i:nth-child(6){left:84%;font-size:24px;animation-delay:3.4s;animation-duration:13s}
+.wfloat i:nth-child(7){left:93%;font-size:13px;animation-delay:7.5s;animation-duration:9.5s}
+@keyframes wrise{0%{transform:translate(0,0);opacity:0}12%{opacity:.5}88%{opacity:.3}100%{transform:translate(16px,-105vh);opacity:0}}
+.wi{position:relative;animation:wup .8s cubic-bezier(.2,.8,.2,1) backwards}
+@keyframes wup{from{opacity:0;transform:translateY(14px)}}
+.wgift{font-size:3.2rem;line-height:1;animation:wup .8s backwards,wbob 2.6s ease-in-out .9s infinite}
+@keyframes wbob{50%{transform:translateY(-7px) rotate(-5deg)}}
+.wgreet{font:700 2.1rem/1 Caveat,cursive}
+.wline{display:flex;align-items:center;gap:10px;color:var(--gold)}
+.wline span{width:56px;height:1px;background:linear-gradient(90deg,transparent,var(--gold))}
+.wline span:last-child{background:linear-gradient(270deg,transparent,var(--gold))}
+.wsub{max-width:26ch;font-size:1.05rem}
+.welcome .btn{animation:wup .8s .9s backwards,wpulse 2.4s 1.8s infinite}
+@keyframes wpulse{0%{box-shadow:0 0 0 0 rgba(200,57,111,.45)}70%{box-shadow:0 0 0 16px rgba(200,57,111,0)}100%{box-shadow:0 0 0 0 rgba(200,57,111,0)}}
+.whint{position:relative;color:var(--soft);font-size:.85rem;animation:wup .8s 1.1s backwards}
+.welcome.gone{opacity:0;transform:scale(1.04);pointer-events:none}
 .q{background:var(--card);border:1px solid var(--line);border-radius:20px;padding:18px;margin-bottom:14px;text-align:left}
 .q p{margin:0 0 12px;font-weight:600}
 .q button{display:block;width:100%;text-align:left;font:inherit;background:transparent;color:var(--ink);border:1px solid var(--line);border-radius:12px;padding:10px 14px;margin-bottom:8px;cursor:pointer}
 .q button.ok{background:var(--rose);border-color:var(--rose);color:#fff}
 .q button.bad{opacity:.5}
 .q .fb{min-height:1.5em;color:var(--soft);margin:4px 0 0}
+.q .fb.wrong{color:var(--err);font-size:.88rem}
+.q .fb.right{color:var(--ok);font-size:.88rem}
 .gift .msg{position:absolute;inset:0;background:var(--card);color:var(--ink);padding:14px;display:flex;align-items:center;justify-content:center;font-size:.95rem;line-height:1.4;opacity:0;transition:opacity .4s;border:2px solid var(--rose);border-radius:22px}
 .gift.open .lid,.gift.open::before{opacity:0;transform:scale(1.2)}
 .gift.open .msg{opacity:1}
@@ -57,10 +83,23 @@ footer{padding:30px 20px 50px;color:var(--soft);font-size:.9rem}
 .gift.vopen::before{opacity:0}
 .gift.vopen .lid span::after{content:" \2713";color:var(--rose)}
 .cake{max-width:300px;margin:0 auto 14px;cursor:pointer}
-.cake svg{width:100%;height:auto;display:block}
+.cake svg{width:100%;height:auto;display:block;overflow:visible}
+.tw{transform-box:fill-box;transform-origin:center;animation:tw 2.6s ease-in-out infinite}
+@keyframes tw{50%{opacity:.2;transform:scale(.55)}}
+.smoke{display:none;fill:none;stroke:rgba(150,130,160,.65);stroke-width:2;stroke-linecap:round}
+.cake.out .smoke{display:block;animation:smk 2s ease-out forwards}
+@keyframes smk{from{opacity:.9;transform:translateY(8px)}to{opacity:0;transform:translateY(-18px)}}
+@media (prefers-reduced-motion:reduce){.cake.out .smoke{display:none}}
 .flame{transform-box:fill-box;transform-origin:50% 100%;animation:fl .18s ease-in-out infinite alternate}
 @keyframes fl{from{transform:scale(1,1) rotate(-3deg)}to{transform:scale(.9,1.12) rotate(3deg)}}
 .cake.out .flame{display:none}
+.cake[data-w="1"] .flame{animation:flw1 .11s ease-in-out infinite alternate}
+.cake[data-w="2"] .flame{animation:flw2 .08s ease-in-out infinite alternate}
+.cake[data-w="3"] .flame{animation:flw3 .06s ease-in-out infinite alternate}
+@keyframes flw1{from{transform:scale(.95,1) rotate(-10deg)}to{transform:scale(.85,1.05) rotate(-18deg)}}
+@keyframes flw2{from{transform:scale(.8,.95) rotate(-20deg)}to{transform:scale(.7,.85) rotate(-32deg)}}
+@keyframes flw3{from{transform:scale(.6,.7) rotate(-32deg)}to{transform:scale(.45,.55) rotate(-45deg)}}
+#blow{position:relative;-webkit-user-select:none;user-select:none;-webkit-touch-callout:none;touch-action:manipulation;background-image:linear-gradient(90deg,rgba(255,255,255,.35) calc(var(--p,0)*100%),transparent 0)}
 .wish{min-height:1.6em;color:var(--soft);margin:0 0 14px}
 .row{display:flex;gap:10px;justify-content:center;flex-wrap:wrap}
 .pzframe{position:relative;max-width:340px;margin:0 auto 14px;padding:0;border-radius:6px;transition:padding .6s,transform .9s cubic-bezier(.3,1.4,.5,1),box-shadow .6s,background-color .6s}
@@ -76,6 +115,7 @@ footer{padding:30px 20px 50px;color:var(--soft);font-size:.9rem}
 .pt{border:0;padding:0;background-repeat:no-repeat;cursor:pointer;border-radius:6px;min-width:0;min-height:0}
 .pz.ok .pt{border-radius:0;cursor:default}
 .pt.sel{outline:4px solid var(--gold);outline-offset:-4px;transform:scale(.95)}
+.pt:focus-visible:not(.sel){outline:3px solid var(--gold);outline-offset:-3px}
 .pzfull{position:absolute;inset:0;background-size:cover;background-position:center;opacity:0;transition:opacity .3s;pointer-events:none}
 .pzfull.show{opacity:1}
 .pzst{color:var(--soft);margin:0 0 14px;min-height:1.6em}
@@ -124,32 +164,37 @@ footer{padding:30px 20px 50px;color:var(--soft);font-size:.9rem}
 <button class="music" id="music" aria-label="Putar musik">♪</button>
 
 <div class="welcome" id="welcome">
-  <p>Ada yang spesial nih untuk</p>
-  <h2 id="wname"></h2>
-  <button class="btn" id="start">Coba Buka Deh</button>
+  <div class="wglow" aria-hidden="true"></div>
+  <div class="wfloat" aria-hidden="true"><i>&#9829;</i><i>&#9829;</i><i>&#9829;</i><i>&#9829;</i><i>&#9829;</i><i>&#9829;</i><i>&#9829;</i></div>
+  <div class="wi wgift" aria-hidden="true">&#127873;</div>
+  <p class="wi wgreet" id="wgreet" style="animation-delay:.15s">Haloo,</p>
+  <h2 class="wi" id="wname" style="animation-delay:.3s"></h2>
+  <div class="wi wline" aria-hidden="true" style="animation-delay:.5s"><span></span>&#9829;<span></span></div>
+  <p class="wi wsub" id="wsub" style="animation-delay:.65s">Ada kejutan kecil yang nungguin kamu.</p>
+  <button class="btn" id="start" style="position:relative">Coba buka deh</button>
+  <small class="whint" id="whint" hidden>Nyalakan suaranya ya, ada lagunya &#9834;</small>
 </div>
 
 <section class="hero">
-  <small id="kicker">Ada kejutan kecil untuk</small>
-  <h1 id="name">Diah</h1>
+  <small id="kicker">Ada kejutan kecil buat</small>
+  <h1 id="name">Agnes</h1>
   <div class="count" id="count" aria-live="polite"></div>
   <p class="note" id="note"></p>
 </section>
 
 <section>
-  <h2>Buat permohonan dulu</h2>
-  <p class="sub">Pejamkan mata sebentar, lalu tiup lilinnya.</p>
+  <h2>Make a wish dulu, yuk</h2>
+  <p class="sub">Pejamin mata sebentar, terus tiup lilinnya ya.</p>
   <div class="cake" id="cake"></div>
   <p class="wish" id="wish" aria-live="polite"></p>
   <div class="row" id="cakebtns">
-    <button class="btn" id="blow">Tiup lilin</button>
-    <button class="btn ghost" id="blowMic">Tiup lewat mikrofon</button>
+    <button class="btn" id="blow">Tahan untuk meniup</button>
   </div>
 </section>
 
 <section>
-  <h2>Aku punya dua kado kecil</h2>
-  <p class="sub">Ketuk kadonya satu per satu ya.</p>
+  <h2>Aku punya dua kado kecil buat kamu</h2>
+  <p class="sub">Ketuk kadonya satu-satu ya.</p>
   <div class="gifts" id="gifts"></div>
   <div class="modal" id="modal" role="dialog" aria-modal="true" aria-labelledby="mt">
     <div class="mcard">
@@ -165,14 +210,14 @@ footer{padding:30px 20px 50px;color:var(--soft);font-size:.9rem}
 </section>
 
 <section>
-  <h2>Tebak-tebakan Yuk</h2>
-  <p class="sub">Seberapa ingat kamu tentang kita?</p>
+  <h2>Tebak-tebakan, yuk</h2>
+  <p class="sub">Seberapa ingat kamu soal kita?</p>
   <div id="quiz"></div>
 </section>
 
 <section>
   <h2>Susun kenangan</h2>
-  <p class="sub">Ketuk dua potongan untuk menukar posisinya, sampai fotonya utuh.</p>
+  <p class="sub">Ketuk dua potongan buat tukar posisinya, sampai fotonya utuh ya.</p>
   <div class="pzframe" id="pzframe">
     <div class="pzwrap" id="pzwrap"><div class="pz" id="pz"></div><div class="pzfull" id="pzfull"></div></div>
     <div class="pzcap"><b id="pzcapt"></b><small id="pzdate"></small></div>
@@ -186,7 +231,7 @@ footer{padding:30px 20px 50px;color:var(--soft);font-size:.9rem}
 
 <section>
   <h2>Kenangan kita</h2>
-  <p class="sub" id="gsub">Usap atau ketuk bukunya untuk membuka halaman berikutnya.</p>
+  <p class="sub" id="gsub">Usap atau ketuk bukunya buat buka halaman berikutnya.</p>
   <div class="book" id="book" tabindex="0" role="group" aria-label="Buku foto kenangan"></div>
   <p class="bkst" id="bkst" aria-live="polite"></p>
   <div class="row">
@@ -197,63 +242,83 @@ footer{padding:30px 20px 50px;color:var(--soft);font-size:.9rem}
 
 <section>
   <h2>Satu hal lagi</h2>
-  <p class="sub">Kado terakhir dariku.</p>
+  <p class="sub">Kado terakhir dari aku.</p>
   <button class="btn" id="openLetter">Buka suratnya</button>
   <div class="letter" id="letter"></div>
+  <p class="skiphint" id="skiphint" hidden>Ketuk suratnya untuk menampilkan semuanya.</p>
 </section>
 
-<footer>Dibuat dengan sayang, khusus untuk Diah.</footer>
+<footer>Dibuat dengan sayang, khusus buat Agnes.</footer>
 
 <script>
 /* ====== ISI DI SINI: ganti teks, foto, dan musik sesuai bahan yang sudah ada ====== */
 var CONFIG = {
-  name: "Diah",
+  name: "Agnes",
   month: 12, day: 8,
-  music: "musik/kitalewatiberdua.mp3", // isi dengan data: URI atau tautan lagu bila sudah ada
-  age: 28, // umur Diah untuk lilin di kue (sampai 12 tahun lilinnya satuan, di atas itu berbentuk angka)
-  wish: "Semoga semua permohonanmu terkabul.",
-  bouquetColors: ["#c8396f", "#f06a9b", "#e8a23a", "#fff7fb", "#8b5cc4"], // warna bunga di buket digital; ganti dengan warna favorit Diah
+  welcome: { greeting: "Haloo,", line: "Ada kejutan kecil yang nungguin kamu.", button: "Coba buka deh" }, // teks di layar pembuka
+  lockUntilDay: false, // true = kado & surat terkunci sampai tanggal ulang tahun (tetap bisa dicoba lewat #uji)
+  claimWA: "", // nomor WhatsApp-mu format 62812xxxxxxx; kalau diisi, tombol Klaim voucher membuka chat ke nomor ini
+  claimMsg: "Aku mau klaim voucher makan malamnya dong! Kapan kita pergi? \uD83C\uDF9F\uFE0F",
+  music: "musik/hannahmontana.mp3", // isi dengan data: URI atau tautan lagu bila sudah ada
+  age: 25, // umur Dia untuk lilin di kue (sampai 12 tahun lilinnya satuan, di atas itu berbentuk angka)
+  wish: "Semoga semua yang kamu harapkan terwujud ya.",
+  bouquetColors: ["#c8396f", "#f06a9b", "#e8a23a", "#fff7fb", "#8b5cc4"], // warna bunga di buket digital; ganti dengan warna favorit Dia
   gifts: [
-    {icon: "💐", label: "Terima kasih", bouquet: true, text: "Terima kasih sudah jadi orang yang paling bikin aku nyaman jadi diri sendiri."},
-    {icon: "🎟️", label: "Voucher", voucher: true, text: "Voucher 1x makan malam di tempat pilihan Diah. Aku yang traktir."}
+    {icon: "💐", label: "Buket buat kamu", bouquet: true, text: "Makasih ya, udah jadi orang yang bikin aku paling nyaman jadi diri sendiri."},
+    {icon: "🎟️", label: "Voucher makan malam", voucher: true, text: "Voucher makan malam di tempat yang kamu pilih. Aku yang traktir, ya!"}
   ],
-  quiz: [ // contoh pertanyaan, ganti dengan hal yang hanya kalian berdua tahu; answer = nomor pilihan benar (mulai dari 0)
-    {q:"Di mana kita pertama kali bertemu?", options:["Di kampus","Di tempat kerja","Lewat teman","Lewat aplikasi"], answer:2, yes:"Betul! Jangan lupa bilang makasih ke mereka.", no:"Hmm, coba ingat lagi ya."},
-    {q:"Makanan favorit kita berdua?", options:["Bakso","Nasi goreng","Sate","Mie ayam"], answer:0, yes:"Tepat sekali!", no:"Bukan itu, coba lagi."},
-    {q:"Siapa yang lebih sering ngalah kalau berdebat?", options:["Aku","Kamu","Gantian","Nggak ada"], answer:0, yes:"Hehe, jujur banget.", no:"Ayo jujur, yang benar yang mana?"}
+  quiz: [ // contoh pertanyaan, ganti dengan hal yang hanya kalian berdua tahu; answer = nomor pilihan benar (mulai dari 0); no = komentar kalau salah: satu teks untuk semua pilihan, ATAU daftar teks sesuai urutan pilihan (isi "" di posisi jawaban benar)
+    {q:"Gimana kita bisa kenal?", options:["Di kampus","Di tempat kerja","Lewat teman","Lewat aplikasi"], answer:2, yes:"Betul! Jangan lupa bilang makasih ke mereka.", no:["Bukan di kampus, hehe.","Bukan di tempat kerja juga.","","Aplikasi? Jangan-jangan kamu lupa ya."]},
+    {q:"Film pertama yang kita tonton bareng?", options:["Avatar: Fire and Ash","Spider-Man: Brand New Day","Toy Story 5","Supergirl"], answer:1, yes:"Betul! Ternyata kamu ingat juga.", no:["Bukan, nggak ada makhluk biru di film kita.","","Aku sih nggak ingat kita nonton itu bareng, hehe.","Salah pahlawan, sayang. Coba lagi ya."]},
+    {q:"Siapa yang lebih sering ngalah kalau lagi debat?", options:["Aku, yang kirim ini","Kamu, Agnes","Gantian","Nggak ada"], answer:0, yes:"Hehe, jujur banget.", no:["","Kamu terlalu baik, Agnes. Ayo jujur.","Gantian? Idealnya sih iya.","Masa nggak ada sih? Ayo diingat lagi."]}
   ],
   puzzle: { // foto untuk puzzle: potret 3:4 (misalnya 900x1200 px). Kosongkan src untuk gambar contoh.
-    src: "", // contoh: "foto/puzzle.jpg"
+    src: "foto/fotosatu.jpg", // contoh: "foto1.jpg"
     cols: 3, rows: 4,
-    caption: "Ini kita. Semoga kamu suka kejutannya.", // tulisan tangan di bawah polaroid
-    date: "8 Desember 2026" // tulisan kecil di bawah caption, misalnya tanggal foto (kosongkan kalau tidak perlu)
+    caption: "First time?😆", // tulisan tangan di bawah polaroid
+    date: "4 September 2026" // tulisan kecil di bawah caption, misalnya tanggal foto (kosongkan kalau tidak perlu)
   },
   photos: [ // enam halaman buku foto: src = alamat foto (potret 3:4, contoh "foto/1.jpg"), caption = tulisan di bawah foto
     {src: "", caption: "Foto 1"},{src: "", caption: "Foto 2"},{src: "", caption: "Foto 3"},
     {src: "", caption: "Foto 4"},{src: "", caption: "Foto 5"},{src: "", caption: "Foto 6"}
   ],
   bookTitle: "Kenangan Kita", // tulisan di sampul buku
-  bookEnd: "Dan masih banyak halaman kosong untuk kita isi bersama.", // halaman terakhir setelah foto
+  bookEnd: "Dan masih banyak halaman kosong yang nunggu kita isi bareng.", // halaman terakhir setelah foto
   letter: [
-    "Diah sayang,",
-    "Selamat ulang tahun. Aku bersyukur banget punya kamu di hari-hariku.",
-    "Ini baru kerangka surat. Isinya akan aku tulis dari hati, lengkap dengan cerita yang cuma kita berdua yang tahu.",
-    "Sekali lagi, selamat ulang tahun."
+    "Agnes sayang,",
+    "Selamat ulang tahun yang ke-25 ya. Akhirnya hari ini datang juga, dan aku senang banget bisa jadi salah satu orang yang ada di hari spesialmu.",
+    "Aku masih ingat pertama kali kita nonton bareng, Spider-Man: Brand New Day. Waktu itu aku belum tahu kalau momen sederhana kayak gitu bakal jadi salah satu kenangan yang paling sering kuingat.",
+    "Yang paling aku syukuri dari kamu itu sederhana: di dekat kamu, aku bisa jadi diri sendiri. Nggak perlu pura-pura, nggak perlu jaim. Dan itu berharga banget buat aku.",
+    "Di umur yang baru ini, aku cuma berharap kamu selalu sehat, selalu bahagia, dan dikelilingi orang-orang yang sayang sama kamu. Semoga semua yang kamu cita-citakan satu per satu jadi nyata, dan semoga aku boleh ada di sana buat lihat dan nemenin.",
+    "Buket kecil dan voucher makan malam tadi nggak seberapa dibanding yang kamu kasih ke aku tiap hari. Itu cuma cara kecilku bilang makasih.",
+    "Masih banyak hari yang mau aku lewatin bareng kamu. Aku nggak sabar.",
+    "Sekali lagi, selamat ulang tahun, sayang.",
+    "Dari aku, yang selalu sayang sama kamu."
   ]
 };
 /* ====== akhir bagian yang diedit ====== */
 
 var $ = function(id){return document.getElementById(id)};
 $("name").textContent = CONFIG.name;
-document.title = "Untuk " + CONFIG.name;
+document.title = "Buat " + CONFIG.name;
 $("wname").textContent = CONFIG.name;
+var W = CONFIG.welcome || {};
+if (W.greeting) $("wgreet").textContent = W.greeting;
+if (W.line != null) $("wsub").textContent = W.line;
+if (W.button) $("start").textContent = W.button;
+$("whint").hidden = !CONFIG.music;
 $("start").onclick = function(){
-  $("welcome").classList.add("gone");
-  if (window.au) { window.au.play(); $("music").textContent = "❚❚"; }
-  boom(18, null, null, "balloon"); boom(window.bdayToday ? 140 : 50);
+  $("welcome").classList.add("gone"); setTimeout(function(){ $("welcome").style.display = "none"; }, 700);
+  if (window.au) playMusic();
+  if (window.bdayToday) boom(11, null, null, "balloon"); else boom(14, null, null, "heart"); // balon hanya di hari H
 };
 
 // Hitung mundur
+var BULAN = ["Januari","Februari","Maret","April","Mei","Juni","Juli","Agustus","September","Oktober","November","Desember"];
+function isOpen(){
+  var n = new Date();
+  return !CONFIG.lockUntilDay || location.hash === "#uji" || n >= new Date(n.getFullYear(), CONFIG.month - 1, CONFIG.day, 0, 0, 0);
+}
 var now = new Date(), year = now.getFullYear();
 var target = new Date(year, CONFIG.month - 1, CONFIG.day, 0, 0, 0);
 var endDay = new Date(year, CONFIG.month - 1, CONFIG.day + 1, 0, 0, 0);
@@ -262,22 +327,24 @@ if (location.hash === "#uji") { target = new Date(now.getTime() - 1000); } // ta
 function tick(){
   var d = target - new Date();
   if (d <= 0) {
-    $("kicker").textContent = "Selamat ulang tahun";
+    $("kicker").textContent = "Selamat ulang tahun,";
     $("count").style.display = "none";
-    $("note").textContent = "Hari ini hari kamu. Yuk, buka kado-kadonya di bawah.";
+    $("note").textContent = "Hari ini hari kamu! Yuk, buka kado-kadonya di bawah ya.";
     return false;
   }
   var s = Math.floor(d / 1000), days = Math.floor(s / 86400), h = Math.floor(s % 86400 / 3600), m = Math.floor(s % 3600 / 60), sec = s % 60;
   $("count").innerHTML = [[days,"hari"],[h,"jam"],[m,"menit"],[sec,"detik"]].map(function(x){return "<div><b>"+x[0]+"</b><span>"+x[1]+"</span></div>"}).join("");
-  $("note").textContent = "Menuju hari ulang tahunmu, " + CONFIG.day + " Desember.";
+  $("note").textContent = "Sebentar lagi hari spesialmu, " + CONFIG.day + " " + BULAN[CONFIG.month - 1] + ".";
   return true;
 }
-if (tick()) setInterval(tick, 1000); else window.bdayToday = true;
+var iv = null;
+if (tick()) iv = setInterval(function(){ if (!tick()) { clearInterval(iv); window.bdayToday = true; } }, 1000); else window.bdayToday = true;
 
 // Kado
-var claimed = {}, cur = -1;
+var claimed = {}, cur = -1, lastFocus = null;
+function esc(t){ return String(t == null ? "" : t).replace(/[&<>"]/g, function(c){ return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]; }); }
 $("gifts").innerHTML = CONFIG.gifts.map(function(g,i){
-  return '<button class="gift" data-i="'+i+'" aria-label="Buka '+g.label+'"><div class="lid">'+g.icon+'<span>'+g.label+'</span></div>'+(g.voucher || g.bouquet ? '' : '<div class="msg">'+g.text+'</div>')+'</button>';
+  return '<button class="gift" data-i="'+i+'" aria-label="Buka '+esc(g.label)+'"><div class="lid">'+g.icon+'<span>'+esc(g.label)+'</span></div>'+(g.voucher || g.bouquet ? '' : '<div class="msg">'+esc(g.text)+'</div>')+'</button>';
 }).join("");
 function bouquetSVG(){
   var cols = CONFIG.bouquetColors || ["#c8396f","#f06a9b","#e8a23a","#fff7fb","#8b5cc4"];
@@ -298,7 +365,7 @@ function bouquetSVG(){
   return o + '</svg>';
 }
 function showGift(i){
-  var g = CONFIG.gifts[i]; cur = i;
+  var g = CONFIG.gifts[i]; cur = i; lastFocus = document.activeElement;
   $("mi").textContent = g.icon; $("mi").hidden = !!g.bouquet; $("mbq").hidden = !g.bouquet;
   if (g.bouquet) { $("mbq").innerHTML = bouquetSVG(); setTimeout(function(){ if ($("modal").classList.contains("show")) boom(26, null, null, "petal"); }, 1500); }
   $("mt").textContent = g.label; $("mp").textContent = g.text;
@@ -306,9 +373,17 @@ function showGift(i){
   $("claim").hidden = !g.voucher; $("claim").textContent = claimed[i] ? "Sudah diklaim \u2713" : "Klaim voucher"; $("claim").disabled = !!claimed[i];
   $("modal").classList.add("show"); $("mclose").focus();
 }
-function closeGift(){ $("modal").classList.remove("show"); }
+function closeGift(){ $("modal").classList.remove("show"); if (lastFocus && lastFocus.focus) lastFocus.focus(); }
+function showLocked(){
+  lastFocus = document.activeElement; cur = -1;
+  $("mi").textContent = "\uD83D\uDD12"; $("mi").hidden = false; $("mbq").hidden = true; $("mimg").hidden = true; $("claim").hidden = true;
+  $("mt").textContent = "Eits, belum boleh dibuka";
+  $("mp").textContent = "Ini baru bisa dibuka tanggal " + CONFIG.day + " " + BULAN[CONFIG.month - 1] + ". Sabar ya, sebentar lagi.";
+  $("modal").classList.add("show"); $("mclose").focus();
+}
 $("gifts").addEventListener("click", function(e){
   var b = e.target.closest(".gift"); if (!b) return;
+  if (!isOpen()) { showLocked(); return; }
   var i = +b.dataset.i, g = CONFIG.gifts[i], r = b.getBoundingClientRect();
   if (g.voucher || g.bouquet) {
     var first = !b.classList.contains("vopen");
@@ -320,8 +395,20 @@ $("gifts").addEventListener("click", function(e){
 });
 $("mclose").onclick = closeGift;
 $("modal").addEventListener("click", function(e){ if (e.target === this) closeGift(); });
-addEventListener("keydown", function(e){ if (e.key === "Escape") closeGift(); });
-$("claim").onclick = function(){ claimed[cur] = 1; this.textContent = "Sudah diklaim \u2713"; this.disabled = true; boom(40, null, null, "spark"); };
+addEventListener("keydown", function(e){
+  if (e.key === "Escape") closeGift();
+  if (e.key === "Tab" && $("modal").classList.contains("show")) {
+    var f = [].filter.call($("modal").querySelectorAll("button"), function(b){ return !b.hidden && !b.disabled; });
+    if (!f.length) return;
+    var a = document.activeElement, first = f[0], last = f[f.length - 1];
+    if (f.indexOf(a) < 0 || (e.shiftKey && a === first) || (!e.shiftKey && a === last)) { e.preventDefault(); (e.shiftKey && a === first ? last : first).focus(); }
+  }
+});
+$("claim").onclick = function(){
+  claimed[cur] = 1; this.textContent = "Sudah diklaim \u2713"; this.disabled = true; boom(40, null, null, "spark");
+  var wa = String(CONFIG.claimWA || "").replace(/\D/g, "");
+  if (wa) window.open("https://wa.me/" + wa + "?text=" + encodeURIComponent(CONFIG.claimMsg || "Aku mau klaim vouchernya!"), "_blank");
+};
 
 // Buku foto (usap atau ketuk untuk membalik halaman)
 (function(){
@@ -370,85 +457,139 @@ $("claim").onclick = function(){ claimed[cur] = 1; this.textContent = "Sudah dik
 
 // Kuis
 $("quiz").innerHTML = CONFIG.quiz.map(function(q,i){
-  return '<div class="q" data-i="'+i+'"><p>'+q.q+'</p>'+q.options.map(function(o,j){return '<button data-j="'+j+'">'+o+'</button>'}).join("")+'<div class="fb"></div></div>';
+  return '<div class="q" data-i="'+i+'"><p>'+esc(q.q)+'</p>'+q.options.map(function(o,j){return '<button data-j="'+j+'">'+esc(o)+'</button>'}).join("")+'<div class="fb"></div></div>';
 }).join("");
 $("quiz").addEventListener("click", function(e){
   var b = e.target.closest("button"); if (!b) return;
   var box = b.parentNode, q = CONFIG.quiz[box.dataset.i], fb = box.querySelector(".fb");
   if (box.classList.contains("done")) return;
-  if (+b.dataset.j === q.answer) { b.classList.add("ok"); box.classList.add("done"); fb.textContent = q.yes; var r = b.getBoundingClientRect(); boom(12, r.left + r.width/2, r.top, "heart"); }
-  else { b.classList.add("bad"); fb.textContent = q.no; }
+  if (+b.dataset.j === q.answer) { b.classList.add("ok"); box.classList.add("done"); fb.textContent = q.yes; fb.classList.remove("wrong"); fb.classList.add("right"); var r = b.getBoundingClientRect(); boom(12, r.left + r.width/2, r.top, "heart"); }
+  else { b.classList.add("bad"); fb.classList.add("wrong"); fb.textContent = Array.isArray(q.no) ? (q.no[+b.dataset.j] || "Hmm, coba lagi ya.") : (q.no || "Hmm, coba lagi ya."); }
 });
 
 // Surat (diketik pelan-pelan)
 $("openLetter").onclick = function(){
-  var L = $("letter"); L.classList.add("show"); this.style.display = "none"; boom(34, null, null, "heart");
+  if (!isOpen()) { showLocked(); return; }
+  var L = $("letter"), hint = $("skiphint"), texts = CONFIG.letter, ps = [], i = 0, k = 0, timer = null, done = false;
+  L.classList.add("show"); this.style.display = "none"; boom(34, null, null, "heart");
   L.scrollIntoView({behavior:"smooth", block:"center"});
-  var reduce = matchMedia("(prefers-reduced-motion:reduce)").matches, i = 0;
-  (function next(){
-    if (i >= CONFIG.letter.length) return;
-    var p = document.createElement("p"); L.appendChild(p); var t = CONFIG.letter[i++], k = 0;
-    if (reduce) { p.textContent = t; next(); return; }
-    (function type(){ p.textContent = t.slice(0, ++k); if (k < t.length) setTimeout(type, 38); else setTimeout(next, 500); })();
-  })();
+  function para(n){ if (!ps[n]) { ps[n] = document.createElement("p"); L.appendChild(ps[n]); } return ps[n]; }
+  function finish(){ clearTimeout(timer); done = true; texts.forEach(function(t, n){ para(n).textContent = t; }); hint.hidden = true; }
+  function step(){
+    if (i >= texts.length) { done = true; hint.hidden = true; return; }
+    var t = texts[i]; k++; para(i).textContent = t.slice(0, k);
+    if (k >= t.length) { i++; k = 0; timer = setTimeout(step, 500); } else timer = setTimeout(step, 38);
+  }
+  if (matchMedia("(prefers-reduced-motion:reduce)").matches) { finish(); return; }
+  hint.hidden = false;
+  L.addEventListener("click", function(){ if (!done) finish(); });
+  step();
 };
 
 // Kue
 var blown = false;
 (function(){
-  var age = Math.max(1, Math.floor(CONFIG.age || 5)), c = "";
+  var age = Math.max(1, Math.floor(CONFIG.age || 5)), c = "", sm = "", i;
+  function flame(x, y){
+    return '<g class="flame"><circle cx="'+x+'" cy="'+(y+2)+'" r="13" fill="#ffd36b" opacity=".3"/>'
+      + '<ellipse cx="'+x+'" cy="'+y+'" rx="5.5" ry="9" fill="#f5a524"/><ellipse cx="'+x+'" cy="'+(y+3)+'" rx="2.6" ry="5" fill="#ffe28a"/></g>';
+  }
+  function wisp(x, y){ return '<path class="smoke" d="M'+x+' '+y+' q5 -7 0 -13 q-5 -6 0 -12"/>'; }
   if (age <= 12) {
-    for (var i = 0; i < age; i++) {
-      var x = age === 1 ? 120 : 70 + i * 100 / (age - 1);
-      c += '<rect x="'+(x-4)+'" y="46" width="8" height="27" rx="2" fill="'+(i%2 ? "#8b5cc4" : "#4fb99f")+'"/>'
-         + '<g class="flame"><ellipse cx="'+x+'" cy="36" rx="5.5" ry="9" fill="#f5a524"/><ellipse cx="'+x+'" cy="39" rx="2.6" ry="5" fill="#ffe28a"/></g>';
+    for (i = 0; i < age; i++) {
+      var x = age === 1 ? 120 : 70 + i * 100 / (age - 1), col = i % 2 ? "#8b5cc4" : "#4fb99f";
+      c += '<rect x="'+(x-4)+'" y="46" width="8" height="27" rx="2" fill="'+col+'"/>'
+         + '<path d="M'+(x-4)+' 57 l8 -5 M'+(x-4)+' 66 l8 -5" stroke="#fff" stroke-width="2.2" opacity=".55"/>'
+         + '<rect x="'+(x-.6)+'" y="42" width="1.2" height="5" rx=".6" fill="#4b3a52"/>'
+         + flame(x, 36);
+      sm += wisp(x, 28);
     }
   } else {
     var d = String(age).split("").slice(0, 3);
     d.forEach(function(ch, i){
-      var x = 120 + (i - (d.length - 1) / 2) * 44;
-      c += '<rect x="'+(x-18)+'" y="28" width="36" height="46" rx="9" fill="'+(i%2 ? "#8b5cc4" : "#4fb99f")+'"/>'
+      var x = 120 + (i - (d.length - 1) / 2) * 44, col = i % 2 ? "#8b5cc4" : "#4fb99f";
+      c += '<rect x="'+(x-18)+'" y="28" width="36" height="46" rx="9" fill="'+col+'"/>'
+         + '<rect x="'+(x-14)+'" y="31" width="5" height="40" rx="2.5" fill="#fff" opacity=".18"/>'
          + '<text x="'+x+'" y="64" text-anchor="middle" font-family="Young Serif,Georgia,serif" font-size="34" fill="#fff">'+ch+'</text>'
-         + '<g class="flame"><ellipse cx="'+x+'" cy="18" rx="5.5" ry="9" fill="#f5a524"/><ellipse cx="'+x+'" cy="21" rx="2.6" ry="5" fill="#ffe28a"/></g>';
+         + '<rect x="'+(x-.6)+'" y="21" width="1.2" height="8" rx=".6" fill="#4b3a52"/>'
+         + flame(x, 18);
+      sm += wisp(x, 8);
     });
   }
+  var k = "", dr;
+  // tetesan krim tingkat bawah
+  [[40,20],[78,28],[112,18],[150,30],[188,22]].forEach(function(t){ k += '<rect x="'+t[0]+'" y="118" width="12" height="'+t[1]+'" rx="6" fill="#fff7fb"/>'; });
+  // mutiara hias tingkat bawah
+  for (i = 0; i < 8; i++) k += '<circle cx="'+(36 + i * 24)+'" cy="160" r="4.5" fill="'+(i % 2 ? "#fff7fb" : "var(--gold)")+'"/>';
+  // tetesan krim tingkat atas
+  [[68,18],[100,24],[132,16],[160,22]].forEach(function(t){ k += '<rect x="'+t[0]+'" y="78" width="11" height="'+t[1]+'" rx="5.5" fill="#fff7fb"/>'; });
+  // taburan
+  [[64,102,30,"#c8396f"],[88,106,-40,"#8b5cc4"],[114,100,15,"#4fb99f"],[140,107,-25,"#c8396f"],[164,100,50,"#8b5cc4"],[178,107,-10,"#4fb99f"]].forEach(function(t){
+    k += '<rect x="'+(t[0]-4)+'" y="'+(t[1]-1.3)+'" width="8" height="2.6" rx="1.3" fill="'+t[3]+'" transform="rotate('+t[2]+' '+t[0]+' '+t[1]+')"/>';
+  });
+  // ceri
+  [59, 181].forEach(function(x){
+    k += '<path d="M'+x+' 59 q3 -8 9 -9" fill="none" stroke="#4fa36b" stroke-width="2" stroke-linecap="round"/>'
+       + '<circle cx="'+x+'" cy="66" r="6.5" fill="#d6204a"/><circle cx="'+(x-2.3)+'" cy="63.5" r="1.9" fill="#fff" opacity=".6"/>';
+  });
+  // kilau
+  var tw = "";
+  [[20,62,0],[222,52,.8],[14,122,1.6],[228,120,.4],[34,24,1.2],[208,18,2]].forEach(function(t){
+    tw += '<g transform="translate('+t[0]+' '+t[1]+')"><path class="tw" d="M0 -7 L2 -2 L7 0 L2 2 L0 7 L-2 2 L-7 0 L-2 -2Z" fill="var(--gold)" style="animation-delay:'+t[2]+'s"/></g>';
+  });
   $("cake").innerHTML = '<svg viewBox="0 0 240 190" role="img" aria-label="Kue ulang tahun">'
-    + '<ellipse cx="120" cy="176" rx="112" ry="10" fill="var(--line)"/>'
-    + '<rect x="22" y="112" width="196" height="58" rx="12" fill="var(--rose)"/>'
-    + '<rect x="22" y="112" width="196" height="14" rx="7" fill="#fff7fb"/>'
-    + '<circle cx="62" cy="148" r="5" fill="#fff7fb" opacity=".85"/><circle cx="120" cy="152" r="5" fill="#fff7fb" opacity=".85"/><circle cx="178" cy="148" r="5" fill="#fff7fb" opacity=".85"/>'
-    + '<rect x="52" y="72" width="136" height="42" rx="10" fill="var(--gold)"/>'
-    + '<rect x="52" y="72" width="136" height="12" rx="6" fill="#fff7fb"/>'
-    + c + '</svg>';
+    + '<ellipse cx="120" cy="181" rx="112" ry="8" fill="#000" opacity=".08"/>'
+    + '<ellipse cx="120" cy="172" rx="110" ry="10" fill="#fff7fb" stroke="var(--line)" stroke-width="1.5"/>'
+    + '<rect x="22" y="112" width="196" height="58" rx="10" fill="var(--rose)"/>'
+    + '<rect x="22" y="150" width="196" height="20" rx="10" fill="#000" opacity=".1"/>'
+    + '<rect x="32" y="130" width="6" height="26" rx="3" fill="#fff" opacity=".18"/>'
+    + '<rect x="22" y="112" width="196" height="16" rx="8" fill="#fff7fb"/>'
+    + '<rect x="52" y="72" width="136" height="42" rx="8" fill="var(--gold)"/>'
+    + '<rect x="52" y="72" width="136" height="13" rx="6.5" fill="#fff7fb"/>'
+    + k + tw + c + sm + '</svg>';
 })();
 function blow(){
   if (blown) return; blown = true;
   $("cake").classList.add("out"); $("cakebtns").style.display = "none";
-  $("wish").textContent = CONFIG.wish || "Semoga semua permohonanmu terkabul.";
-  boom(90); boom(36, null, null, "spark");
+  $("wish").textContent = CONFIG.wish || "Semoga semua yang kamu harapkan terwujud ya.";
+  var cr = $("cake").getBoundingClientRect();
+  if (window.bdayToday) { boom(34, null, null, "cannon"); setTimeout(function(){ boom(36, null, null, "confetti"); }, 700); }
+  else boom(14, null, null, "cannon");
+  boom(26, cr.left + cr.width / 2, cr.top + cr.height * .3, "spark");
 }
-$("cake").onclick = blow; $("blow").onclick = blow;
-$("blowMic").onclick = function(){
-  if (!navigator.mediaDevices || !navigator.mediaDevices.getUserMedia) { $("wish").textContent = "Mikrofon tidak tersedia, ketuk tombol Tiup lilin saja."; return; }
-  navigator.mediaDevices.getUserMedia({audio: true}).then(function(stream){
-    var ac = new (window.AudioContext || window.webkitAudioContext)(), an = ac.createAnalyser(), buf = new Uint8Array(512), hits = 0;
-    ac.resume(); an.fftSize = 512; ac.createMediaStreamSource(stream).connect(an);
-    $("wish").textContent = "Tiup ke arah mikrofon...";
-    (function listen(){
-      if (blown) { stream.getTracks().forEach(function(t){ t.stop(); }); ac.close(); return; }
-      an.getByteTimeDomainData(buf);
-      var sum = 0; for (var i = 0; i < buf.length; i++) { var v = (buf[i] - 128) / 128; sum += v * v; }
-      hits = Math.sqrt(sum / buf.length) > .12 ? hits + 1 : Math.max(0, hits - 1);
-      if (hits > 18) blow();
-      requestAnimationFrame(listen);
-    })();
-  }).catch(function(){ $("wish").textContent = "Mikrofon tidak diizinkan, ketuk tombol Tiup lilin saja."; });
-};
+$("cake").onclick = blow; // ketuk kue = cadangan cepat; hapus baris ini kalau mau hanya lewat tahan tombol
+$("wish").textContent = "Tahan tombolnya sampai apinya padam ya.";
+(function(){
+  var btn = $("blow"), cake = $("cake"), HOLD = 1100, t0 = 0, raf = 0, holding = false;
+  function reset(){
+    holding = false; cancelAnimationFrame(raf);
+    btn.style.setProperty("--p", 0); delete cake.dataset.w;
+    if (!blown) btn.textContent = "Tahan untuk meniup";
+  }
+  function frame(){
+    if (!holding || blown) return;
+    var p = Math.min(1, (performance.now() - t0) / HOLD);
+    btn.style.setProperty("--p", p);
+    cake.dataset.w = p > .7 ? 3 : p > .35 ? 2 : 1;
+    if (p >= 1) { reset(); blow(); return; }
+    raf = requestAnimationFrame(frame);
+  }
+  function start(){
+    if (blown || holding) return;
+    holding = true; t0 = performance.now(); btn.textContent = "Tiup terus...";
+    raf = requestAnimationFrame(frame);
+  }
+  btn.addEventListener("pointerdown", function(e){ e.preventDefault(); start(); });
+  ["pointerup", "pointercancel", "pointerleave", "blur"].forEach(function(n){ btn.addEventListener(n, reset); });
+  btn.addEventListener("keydown", function(e){ if (e.key === " " || e.key === "Enter") { e.preventDefault(); if (!e.repeat) start(); } });
+  btn.addEventListener("keyup", function(e){ if (e.key === " " || e.key === "Enter") { e.preventDefault(); reset(); } });
+  btn.addEventListener("contextmenu", function(e){ e.preventDefault(); });
+})();
 
 // Puzzle foto (tukar dua potongan)
 (function(){
   var P = CONFIG.puzzle || {}, C = P.cols || 3, R = P.rows || 4;
-  var box = $("pz"), full = $("pzfull"), pos = [], sel = -1, solved = false, moves = 0;
+  var box = $("pz"), full = $("pzfull"), pos = [], sel = -1, solved = false, moves = 0, celebrated = false;
   function dummyPic(){
     var svg = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 800"><defs><linearGradient id="g" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#c8396f"/><stop offset=".5" stop-color="#8b5cc4"/><stop offset="1" stop-color="#e8a23a"/></linearGradient></defs>'
       + '<rect width="600" height="800" fill="url(#g)"/><circle cx="140" cy="140" r="70" fill="#fff7fb" opacity=".85"/><rect x="420" y="90" width="110" height="110" rx="18" fill="#4fb99f"/>'
@@ -461,6 +602,7 @@ $("blowMic").onclick = function(){
   full.style.backgroundImage = 'url("' + src + '")';
   $("pzcapt").textContent = P.caption || ""; $("pzdate").textContent = P.date || "";
   function render(){
+    var ae = document.activeElement, had = ae && ae.classList && ae.classList.contains("pt") ? +ae.dataset.i : -1;
     box.innerHTML = ""; box.className = "pz" + (solved ? " ok" : ""); $("pzframe").classList.toggle("done", solved);
     box.style.gridTemplateColumns = "repeat(" + C + ",1fr)"; box.style.gridTemplateRows = "repeat(" + R + ",1fr)";
     pos.forEach(function(pc, slot){
@@ -470,7 +612,8 @@ $("blowMic").onclick = function(){
       t.style.backgroundPosition = (C > 1 ? c / (C - 1) * 100 : 0) + "% " + (R > 1 ? r / (R - 1) * 100 : 0) + "%";
       box.appendChild(t);
     });
-    $("pzst").textContent = solved ? "Selesai dalam " + moves + " langkah!" : "Langkah: " + moves;
+    if (had >= 0 && !solved && box.children[had]) box.children[had].focus();
+    $("pzst").textContent = solved ? "Yey, selesai dalam " + moves + " langkah!" : "Langkah: " + moves;
   }
   function build(){
     var i, j, t; pos = []; sel = -1; solved = false; moves = 0;
@@ -489,7 +632,7 @@ $("blowMic").onclick = function(){
       solved = pos.every(function(pc, s){ return pc === s; });
     }
     render();
-    if (solved) setTimeout(function(){ boom(30, null, null, "heart"); boom(70); }, 300);
+    if (solved && !celebrated) { celebrated = true; setTimeout(function(){ var fr = $("pzframe").getBoundingClientRect(); boom(46, fr.left + fr.width / 2, fr.top + fr.height * .5, "confetti"); boom(12, null, null, "heart"); }, 350); }
   });
   $("pzpeek").onclick = function(){ full.classList.add("show"); setTimeout(function(){ full.classList.remove("show"); }, 1500); };
   $("pzreset").onclick = build;
@@ -497,65 +640,140 @@ $("blowMic").onclick = function(){
 })();
 
 // Musik
+function playMusic(){
+  var pr = window.au.play();
+  $("music").textContent = "\u275A\u275A";
+  if (pr && pr.catch) pr.catch(function(){ $("music").textContent = "\u266A"; });
+}
 if (CONFIG.music) {
   var au = new Audio(CONFIG.music); au.loop = true; $("music").style.display = "block";
-  $("music").onclick = function(){ if (au.paused) { au.play(); this.textContent = "❚❚"; } else { au.pause(); this.textContent = "♪"; } };
+  au.addEventListener("error", function(){ $("music").style.display = "none"; });
+  $("music").onclick = function(){ if (au.paused) { playMusic(); } else { au.pause(); this.textContent = "\u266A"; } };
 }
 
-// Konfeti
-var cv = $("fx"), cx = cv.getContext("2d"), bits = [], run = false;
-function size(){ cv.width = innerWidth; cv.height = innerHeight; }
+// Konfeti & balon
+// boom(jumlah, x, y, jenis): "confetti" (hujan dari atas bila x kosong, letupan di titik x,y bila diisi),
+// "cannon" (meriam konfeti dari dua sudut bawah; jumlah = per meriam), "balloon" (balon naik),
+// "heart" (hati naik), "spark" (kilau bintang), "petal" (kelopak jatuh)
+var cv = $("fx"), cx = cv.getContext("2d"), bits = [], run = false, last = 0, DPR = 1, VW = innerWidth, VH = innerHeight;
+function size(){
+  DPR = Math.min(2, window.devicePixelRatio || 1); VW = innerWidth; VH = innerHeight;
+  cv.width = Math.round(VW * DPR); cv.height = Math.round(VH * DPR);
+  cv.style.width = VW + "px"; cv.style.height = VH + "px";
+}
 size(); addEventListener("resize", size);
+function rnd(a, b){ return a + Math.random() * (b - a); }
+function shade(hex, f){ // f -1..0 = lebih gelap, 0..1 = lebih terang
+  var n = parseInt(hex.slice(1), 16), t = f < 0 ? 0 : 255, k = Math.abs(f);
+  return "rgb(" + Math.round(((n >> 16) & 255) * (1 - k) + t * k) + "," + Math.round(((n >> 8) & 255) * (1 - k) + t * k) + "," + Math.round((n & 255) * (1 - k) + t * k) + ")";
+}
 function heart(x,y,s){cx.beginPath();cx.moveTo(x,y+s*.5);cx.bezierCurveTo(x-s*1.1,y-s*.1,x-s*.55,y-s*.8,x,y-s*.25);cx.bezierCurveTo(x+s*.55,y-s*.8,x+s*1.1,y-s*.1,x,y+s*.5);cx.fill();}
 function star(x,y,s){cx.beginPath();for(var k=0;k<8;k++){var a=k*Math.PI/4-Math.PI/2,r=k%2?s*.3:s;cx.lineTo(x+Math.cos(a)*r,y+Math.sin(a)*r);}cx.closePath();cx.fill();}
-// boom(jumlah, x, y, jenis): jenis = "confetti" (bawaan), "heart" (hati naik), "spark" (kilau bintang), "balloon" (balon naik)
+
+var CONF = ["#c8396f","#f06a9b","#e8a23a","#f2b84f","#8b5cc4","#4fb99f","#fff1f6","#ff8fb3"];
+var BAL = ["#c8396f","#f06a9b","#e8a23a","#8b5cc4","#4fb99f","#ff8fb3"];
+var sprites = {};
+function balloonSprite(hex){ // balon digambar sekali per warna: badan ber-gradasi, simpul, dan kilap
+  if (sprites[hex]) return sprites[hex];
+  var c = document.createElement("canvas"), g = c.getContext("2d");
+  c.width = 160; c.height = 200; g.scale(2, 2);
+  var gr = g.createRadialGradient(28, 26, 3, 40, 42, 44);
+  gr.addColorStop(0, shade(hex, .6)); gr.addColorStop(.4, hex); gr.addColorStop(1, shade(hex, -.4));
+  g.fillStyle = gr; g.beginPath(); g.moveTo(40, 82);
+  g.bezierCurveTo(22, 70, 8, 56, 8, 38); g.bezierCurveTo(8, 17, 22, 4, 40, 4);
+  g.bezierCurveTo(58, 4, 72, 17, 72, 38); g.bezierCurveTo(72, 56, 58, 70, 40, 82);
+  g.closePath(); g.fill();
+  g.fillStyle = shade(hex, -.3); g.beginPath(); g.moveTo(40, 81); g.lineTo(35, 90); g.lineTo(45, 90); g.closePath(); g.fill();
+  g.fillStyle = "rgba(255,255,255,.55)"; g.beginPath(); g.ellipse(26, 27, 5, 11, -.5, 0, 6.2832); g.fill();
+  g.fillStyle = "rgba(255,255,255,.3)"; g.beginPath(); g.ellipse(22, 45, 2, 3.5, -.2, 0, 6.2832); g.fill();
+  return (sprites[hex] = c);
+}
+function kick(){ if (!run) { run = true; last = 0; requestAnimationFrame(loop); } }
+function piece(x, y, vx, vy, wait){
+  if (bits.length > 700) return;
+  var c = CONF[(Math.random() * CONF.length) | 0], q = Math.random(), shape = q < .62 ? 0 : q < .82 ? 1 : 2;
+  bits.push({t: "confetti", x: x, y: y, vx: vx, vy: vy, c: c, c2: shade(c, -.3), shape: shape,
+    w: shape === 2 ? 2.6 : rnd(6, 10), h: shape === 2 ? rnd(16, 26) : rnd(4, 7),
+    rot: rnd(0, 6.28), vr: rnd(-.25, .25), f: rnd(0, 6.28), vf: rnd(.12, .34), ph: rnd(0, 6.28),
+    drag: rnd(.975, .99), term: rnd(2.2, 3.8), life: rnd(240, 380), wait: wait || 0});
+}
+function cannons(n){ // letupan dari dua sudut bawah, menyilang ke tengah
+  var sc = Math.min(1.25, Math.max(.7, VH / 760));
+  [[VW * .04, VH * .97, -1.15], [VW * .96, VH * .97, -Math.PI + 1.15]].forEach(function(m){
+    for (var i = 0; i < n; i++) {
+      var a = m[2] + rnd(-.38, .38), v = rnd(9, 21) * sc;
+      piece(m[0], m[1], Math.cos(a) * v, Math.sin(a) * v, 0);
+    }
+    boom(9, m[0], m[1] - 10, "spark");
+  });
+  kick();
+}
 function boom(n, x, y, type){
   if (matchMedia("(prefers-reduced-motion:reduce)").matches) return;
   type = type || "confetti";
-  var cols = ["#c8396f","#e8a23a","#8b5cc4","#4fb99f","#f06a9b"], W = cv.width, H = cv.height;
-  for (var i = 0; i < n; i++) {
-    var p = {t: type, c: cols[i%5], r: Math.random()*6, vr: (Math.random()-.5)*.3, life: 220, ph: Math.random()*6.28};
-    if (type === "heart") {
-      p.x = x == null ? Math.random()*W : x + (Math.random()-.5)*60; p.y = y == null ? H + 20 : y;
-      p.vx = (Math.random()-.5)*1.2; p.vy = -1.5-Math.random()*2.5; p.s = 8+Math.random()*10; p.c = ["#f06a9b","#c8396f","#ff8fb3"][i%3]; p.life = 200;
+  if (type === "cannon") { cannons(n); return; }
+  var W = VW, H = VH, i, a, v;
+  for (i = 0; i < n; i++) {
+    if (type === "confetti") {
+      if (x == null) piece(rnd(0, W), rnd(-30, -6), rnd(-.6, .6), rnd(.4, 1.6), rnd(0, 100));
+      else { a = -Math.PI / 2 + rnd(-1.15, 1.15); v = rnd(4, 13); piece(x + rnd(-6, 6), y, Math.cos(a) * v, Math.sin(a) * v, 0); }
+    } else if (type === "heart") {
+      bits.push({t: "heart", x: x == null ? rnd(0, W) : x + rnd(-30, 30), y: y == null ? H + 20 : y, vx: rnd(-.6, .6), vy: -1.5 - Math.random() * 2.5,
+        s: 8 + Math.random() * 10, c: ["#f06a9b","#c8396f","#ff8fb3"][i % 3], ph: rnd(0, 6.28), life: 200, wait: 0});
     } else if (type === "spark") {
-      var a = Math.random()*6.28, v = 1+Math.random()*5;
-      p.x = x == null ? W/2 : x; p.y = y == null ? H/2 : y; p.vx = Math.cos(a)*v; p.vy = Math.sin(a)*v;
-      p.s = 6+Math.random()*8; p.c = ["#e8a23a","#f2b84f","#fff1b8"][i%3]; p.life = 70;
+      a = rnd(0, 6.28); v = 1 + Math.random() * 5;
+      bits.push({t: "spark", x: x == null ? W / 2 : x, y: y == null ? H / 2 : y, vx: Math.cos(a) * v, vy: Math.sin(a) * v,
+        s: 6 + Math.random() * 8, c: ["#e8a23a","#f2b84f","#fff1b8"][i % 3], ph: 0, life: 70, wait: 0});
     } else if (type === "petal") {
-      p.x = Math.random()*W; p.y = -10; p.vx = (Math.random()-.5)*1.2; p.vy = 1+Math.random()*1.6; p.s = 7+Math.random()*6;
-      p.c = ["#f06a9b","#ff8fb3","#c8396f","#fff1f6"][i%4]; p.life = 420;
+      bits.push({t: "petal", x: rnd(0, W), y: -10, vx: rnd(-.6, .6), vy: 1 + Math.random() * 1.6, s: 7 + Math.random() * 6,
+        c: ["#f06a9b","#ff8fb3","#c8396f","#fff1f6"][i % 4], r: rnd(0, 6), vr: rnd(-.15, .15), ph: rnd(0, 6.28), life: 420, wait: 0});
     } else if (type === "balloon") {
-      p.x = Math.random()*W; p.y = H + 30 + Math.random()*80; p.vx = 0; p.vy = -1.2-Math.random()*1.6; p.s = 20+Math.random()*12; p.life = 900;
-    } else {
-      p.x = x == null ? Math.random()*W : x; p.y = y == null ? -10 : y;
-      p.vx = (Math.random()-.5)*(x == null ? 3 : 9); p.vy = x == null ? 2+Math.random()*3 : -3-Math.random()*7;
-      p.w = 6+Math.random()*6; p.h = 4+Math.random()*5;
+      var k = rnd(.55, .95);
+      bits.push({t: "balloon", x: rnd(.06, .94) * W, y: H + 105 * k + rnd(0, 30), vy: -(.8 + k * .9 + rnd(0, .5)), k: k,
+        c: BAL[(Math.random() * BAL.length) | 0], ph: rnd(0, 6.28), life: 5000, wait: i * rnd(4, 9)});
     }
-    bits.push(p);
   }
-  if (!run) { run = true; requestAnimationFrame(loop); }
+  kick();
 }
-function loop(){
-  cx.clearRect(0,0,cv.width,cv.height);
-  bits = bits.filter(function(p){return p.life > 0 && p.y > -80 && p.y < cv.height + 140});
+function loop(t){
+  var dt = last ? Math.min(3, (t - last) / 16.667) : 1; last = t;
+  cx.setTransform(DPR, 0, 0, DPR, 0, 0); cx.clearRect(0, 0, VW, VH);
+  bits = bits.filter(function(p){ return p.life > 0 && p.y < VH + 260; });
   bits.forEach(function(p){
-    p.life--; p.ph += .05;
-    cx.save(); cx.globalAlpha = p.t === "confetti" ? 1 : Math.min(1, p.life/40); cx.fillStyle = p.c;
-    if (p.t === "heart") { p.x += p.vx + Math.sin(p.ph)*.7; p.y += p.vy; heart(p.x, p.y, p.s); }
-    else if (p.t === "spark") { p.x += p.vx; p.y += p.vy; p.vx *= .95; p.vy *= .95; star(p.x, p.y, p.s); }
-    else if (p.t === "petal") {
-      p.x += p.vx + Math.sin(p.ph)*.8; p.y += p.vy; p.r += p.vr;
-      cx.translate(p.x, p.y); cx.rotate(p.r); cx.beginPath(); cx.ellipse(0, 0, p.s*.45, p.s, 0, 0, 6.2832); cx.fill();
+    if (p.wait > 0) { p.wait -= dt; return; }
+    p.life -= dt; p.ph += .05 * dt;
+    cx.save();
+    if (p.t === "confetti") {
+      var dr = Math.pow(p.drag, dt);
+      p.vx *= dr; p.vy = p.vy * dr + .11 * dt;
+      if (p.vy > p.term) p.vy += (p.term - p.vy) * Math.min(1, .12 * dt);
+      p.f += p.vf * dt; p.rot += p.vr * dt;
+      p.x += (p.vx + (p.vy > 0 ? Math.sin(p.ph) * .55 : 0)) * dt; p.y += p.vy * dt;
+      var sy = Math.cos(p.f);
+      cx.globalAlpha = Math.min(1, p.life / 40); cx.fillStyle = sy > 0 ? p.c : p.c2;
+      cx.translate(p.x, p.y); cx.rotate(p.rot); cx.scale(1, sy);
+      if (p.shape === 1) { cx.beginPath(); cx.arc(0, 0, p.w * .38, 0, 6.2832); cx.fill(); }
+      else cx.fillRect(-p.w / 2, -p.h / 2, p.w, p.h);
+    } else if (p.t === "balloon") {
+      var k = p.k;
+      p.x += Math.sin(p.ph * .7) * .5 * dt; p.y += p.vy * dt;
+      if (p.y < -130 * k) p.life = 0;
+      cx.translate(p.x, p.y); cx.rotate(Math.sin(p.ph * .7) * .08);
+      cx.strokeStyle = "rgba(110,90,120,.55)"; cx.lineWidth = 1.2; cx.beginPath(); cx.moveTo(0, 47 * k);
+      cx.bezierCurveTo(8 * k * Math.sin(p.ph * 1.3), 70 * k, -8 * k * Math.sin(p.ph * 1.1 + 1), 95 * k, 4 * k * Math.sin(p.ph), 125 * k); cx.stroke();
+      cx.drawImage(balloonSprite(p.c), -40 * k, -43 * k, 80 * k, 100 * k);
+    } else {
+      cx.globalAlpha = Math.min(1, p.life / 40); cx.fillStyle = p.c;
+      if (p.t === "heart") { p.x += (p.vx + Math.sin(p.ph) * .7) * dt; p.y += p.vy * dt; heart(p.x, p.y, p.s); }
+      else if (p.t === "spark") { var fr = Math.pow(.95, dt); p.x += p.vx * dt; p.y += p.vy * dt; p.vx *= fr; p.vy *= fr; star(p.x, p.y, p.s); }
+      else if (p.t === "petal") {
+        p.x += (p.vx + Math.sin(p.ph) * .8) * dt; p.y += p.vy * dt; p.r += p.vr * dt;
+        cx.translate(p.x, p.y); cx.rotate(p.r); cx.beginPath(); cx.ellipse(0, 0, p.s * .45, p.s, 0, 0, 6.2832); cx.fill();
+      }
     }
-    else if (p.t === "balloon") {
-      p.x += Math.sin(p.ph)*.6; p.y += p.vy;
-      cx.strokeStyle = "rgba(120,100,130,.6)"; cx.beginPath(); cx.moveTo(p.x, p.y + p.s); cx.lineTo(p.x + Math.sin(p.ph)*6, p.y + p.s*2.4); cx.stroke();
-      cx.beginPath(); cx.ellipse(p.x, p.y, p.s*.8, p.s, 0, 0, 6.2832); cx.fill();
-    } else { p.x += p.vx; p.y += p.vy; p.vy += .12; p.r += p.vr; cx.translate(p.x,p.y); cx.rotate(p.r); cx.fillRect(-p.w/2,-p.h/2,p.w,p.h); }
     cx.restore();
   });
-  if (bits.length) requestAnimationFrame(loop); else run = false;
+  if (bits.length) requestAnimationFrame(loop); else { run = false; last = 0; }
 }
 </script>
 </body>
